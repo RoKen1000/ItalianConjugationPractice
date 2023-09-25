@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguagePracticeSite", "LanguagePractice\LanguagePracticeSite.csproj", "{E36E26B5-5E8A-433A-B1CA-0D4112396C52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguagePractice.DataAccess", "LanguagePractice.DataAccess\LanguagePractice.DataAccess.csproj", "{A526AA7C-F306-460F-B518-D48A1B432F42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E36E26B5-5E8A-433A-B1CA-0D4112396C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E36E26B5-5E8A-433A-B1CA-0D4112396C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E36E26B5-5E8A-433A-B1CA-0D4112396C52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A526AA7C-F306-460F-B518-D48A1B432F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A526AA7C-F306-460F-B518-D48A1B432F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A526AA7C-F306-460F-B518-D48A1B432F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A526AA7C-F306-460F-B518-D48A1B432F42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
