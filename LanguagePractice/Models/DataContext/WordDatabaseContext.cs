@@ -5,7 +5,7 @@ namespace LanguagePractice.DataAccess.DataContext
 {
     public class WordDatabaseContext : DbContext
     {
-        public WordDatabaseContext()
+        public WordDatabaseContext(DbContextOptions<WordDatabaseContext> options) : base(options)
         {
             
         }
