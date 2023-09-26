@@ -1,5 +1,6 @@
-﻿
-<h2 style="text-align:center;">Verb: Vedere (to see)</h2>
+﻿@model IEnumerable<PresentIndicative>
+
+<h2 style="text-align:center;">Verb: @Model.First().Infinitive</h2>
 
 <form id="conj-form" style="display: flex; flex-direction: column; align-items: center;">
     <label>First person singular</label>
@@ -24,31 +25,33 @@
 </form>
 
 <script>
-    const conjugations = { vedere: ["vedo", "vedi", "vede", "vediamo", "vedete", "vedono"] };
     const answers = [];
 
-    const myForm = document.getElementById("conj-form");
-    const smallText = myForm.querySelectorAll("small");
+    var conjugations = @Html.Raw(Json.Serialize(Model.First()))
+    
 
-    myForm.addEventListener("submit", (e) => {
-        e.preventDefault()
+    // const myForm = document.getElementById("conj-form");
+    // const smallText = myForm.querySelectorAll("small");
 
-        answers.push(myForm["fps"].value)
-        answers.push(myForm["sps"].value)
-        answers.push(myForm["tps"].value)
-        answers.push(myForm["fpp"].value)
-        answers.push(myForm["spp"].value)
-        answers.push(myForm["tpp"].value)
+    // myForm.addEventListener("submit", (e) => {
+    //     e.preventDefault()
 
-        for (let i = 0; i < answers.length; i++){
-            if (answers[i] === conjugations.vedere[i]) {
-                smallText[i].innerHTML = "Correct!"
-                smallText[i].style.color = "green";
-            }
-            else{
-                smallText[i].innerHTML = "Incorrect. Try again."
-                smallText[i].style.color = "red";
-            }
-        }
-    })
+    //     answers.push(myForm["fps"].value)
+    //     answers.push(myForm["sps"].value)
+    //     answers.push(myForm["tps"].value)
+    //     answers.push(myForm["fpp"].value)
+    //     answers.push(myForm["spp"].value)
+    //     answers.push(myForm["tpp"].value)
+
+    //     for (let i = 0; i < answers.length; i++){
+    //         if (answers[i] === conjugations.vedere[i]) {
+    //             smallText[i].innerHTML = "Correct!"
+    //             smallText[i].style.color = "green";
+    //         }
+    //         else{
+    //             smallText[i].innerHTML = "Incorrect. Try again."
+    //             smallText[i].style.color = "red";
+    //         }
+    //     }
+    // })
 </script>
