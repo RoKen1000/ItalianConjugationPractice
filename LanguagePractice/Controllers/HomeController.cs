@@ -1,5 +1,7 @@
-﻿using LanguagePractice.Models;
+﻿using LanguagePractice.DataAccess.DataContext;
+using LanguagePractice.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace LanguagePractice.Controllers
@@ -8,14 +10,19 @@ namespace LanguagePractice.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly WordDatabaseContext _db;
+       
+        public HomeController(ILogger<HomeController> logger, WordDatabaseContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable < PresentIndicative > retrievedWord = _db.PresentIndicatives.OrderBy(w => Guid.NewGuid()).Take(1);
+
+            return View(retrievedWord);
         }
 
         public IActionResult Privacy()
