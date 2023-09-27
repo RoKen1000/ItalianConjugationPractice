@@ -1,6 +1,6 @@
-﻿@model IEnumerable<PresentIndicative>
+﻿@model PresentIndicative
 
-<h2 style="text-align:center;">Verb: @Model.First().Infinitive</h2>
+<h2 style="text-align:center;">Verb: @Model.Infinitive</h2>
 
 <form id="conj-form" style="display: flex; flex-direction: column; align-items: center;">
     <label>First person singular</label>
@@ -24,52 +24,21 @@
     <button style="margin: 10px;" type="submit">Submit Answers</button>
 </form>
 
-<script>
- 
-
-    
-
-    // const myForm = document.getElementById("conj-form");
-    // const smallText = myForm.querySelectorAll("small");
-
-    // myForm.addEventListener("submit", (e) => {
-    //     e.preventDefault()
-
-    //     answers.push(myForm["fps"].value)
-    //     answers.push(myForm["sps"].value)
-    //     answers.push(myForm["tps"].value)
-    //     answers.push(myForm["fpp"].value)
-    //     answers.push(myForm["spp"].value)
-    //     answers.push(myForm["tpp"].value)
-
-    //     for (let i = 0; i < answers.length; i++){
-    //         if (answers[i] === conjugations.vedere[i]) {
-    //             smallText[i].innerHTML = "Correct!"
-    //             smallText[i].style.color = "green";
-    //         }
-    //         else{
-    //             smallText[i].innerHTML = "Incorrect. Try again."
-    //             smallText[i].style.color = "red";
-    //         }
-    //     }
-    // })
-</script>
-
 @section Scripts{
     <script>
         $(document).ready(function(){
-            const conjugations = @Html.Raw(Json.Serialize(Model.First()));
-            const answers = {};
-            const smallText = $("small");
+            const conjugations = @Html.Raw(Json.Serialize(Model));
+            // const answers = {};
+            // const smallText = $("small");
 
             console.log(conjugations)
                 
-            $("#conj-form").on("submit", function(event){
-                event.preventDefault();
+            // $("#conj-form").on("submit", function(event){
+            //     event.preventDefault();
 
-                $("#conj-form :input").each(function () {
-                    answers[this.id] = this.value;
-                });
+            //     $("#conj-form :input").each(function () {
+            //         answers[this.id] = this.value;
+            //     });
 
                 //console.log(answers)
                 
@@ -84,7 +53,7 @@
                 //         smallText[i].style.color = "red";
                 //     }
                 // }
-            })
+        //     })
         })
     </script>
 }

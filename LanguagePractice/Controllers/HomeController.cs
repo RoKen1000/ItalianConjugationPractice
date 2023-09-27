@@ -20,7 +20,11 @@ namespace LanguagePractice.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable < PresentIndicative > retrievedWord = _db.PresentIndicatives.OrderBy(w => Guid.NewGuid()).Take(1);
+
+            int wordCount = _db.PresentIndicatives.Count();
+            Random r = new Random();
+            int offset = r.Next(0, wordCount);
+            PresentIndicative retrievedWord = _db.PresentIndicatives.Skip(offset).FirstOrDefault();
 
             return View(retrievedWord);
         }
