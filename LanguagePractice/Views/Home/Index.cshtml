@@ -4,30 +4,29 @@
 
 <form id="conj-form" style="display: flex; flex-direction: column; align-items: center;">
     <label>First person singular</label>
-    <input id="fps" type="text" />
+    <input id="firstPersonSingular" type="text" />
     <small></small>
     <label>Second person singular</label>
-    <input id="sps" type="text" />
+    <input id="secondPersonSingular" type="text" />
     <small></small>
     <label>Third person singular</label>
-    <input id="tps" type="text" />
+    <input id="thirdPersonSingular" type="text" />
     <small></small>
     <label>First person plural</label>
-    <input id="fpp" type="text" />
+    <input id="firstPersonPlural" type="text" />
     <small></small>
     <label>Second person plural</label>
-    <input id="spp" type="text" />
+    <input id="secondPersonPlural" type="text" />
     <small></small>
     <label>Third person plural</label>
-    <input id="tpp" type="text" />
+    <input id="thirdPersonPlural" type="text" />
     <small></small>
     <button style="margin: 10px;" type="submit">Submit Answers</button>
 </form>
 
 <script>
-    const answers = [];
+ 
 
-    var conjugations = @Html.Raw(Json.Serialize(Model.First()))
     
 
     // const myForm = document.getElementById("conj-form");
@@ -55,3 +54,37 @@
     //     }
     // })
 </script>
+
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            const conjugations = @Html.Raw(Json.Serialize(Model.First()));
+            const answers = {};
+            const smallText = $("small");
+
+            console.log(conjugations)
+                
+            $("#conj-form").on("submit", function(event){
+                event.preventDefault();
+
+                $("#conj-form :input").each(function () {
+                    answers[this.id] = this.value;
+                });
+
+                //console.log(answers)
+                
+                
+                // for (let i = 0; i < answers.length; i++){
+                //     if (answers[i] === conjugations.vedere[i]) {
+                //         smallText[i].innerHTML = "Correct!"
+                //         smallText[i].style.color = "green";
+                //     }
+                //     else{
+                //         smallText[i].innerHTML = "Incorrect. Try again."
+                //         smallText[i].style.color = "red";
+                //     }
+                // }
+            })
+        })
+    </script>
+}
