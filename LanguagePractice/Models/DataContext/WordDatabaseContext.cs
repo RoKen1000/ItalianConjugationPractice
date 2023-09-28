@@ -11,21 +11,28 @@ namespace LanguagePractice.DataAccess.DataContext
             
         }
 
-        public DbSet<GenericWord> PresentIndicativeWords { get; set; }
+        public DbSet<PresentIndicative> PresentIndicativeWords { get; set; }
         public DbSet<PresentPerfect> PresentPerfectPhrases { get; set; }
+        public DbSet<Imperfect> ImperfectWords { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<GenericWord>().HasData(
-                    new GenericWord { Id = 1, Infinitive = "fàre", FirstPersonSingular = "fàccio", SecondPersonSingular = "fài", ThirdPersonSingular = "fà", FirstPersonPlural = "facciàmo", SecondPersonPlural = "fàte", ThirdPersonPlural = "fànno"},
-                    new GenericWord { Id = 2, Infinitive = "vedére", FirstPersonSingular = "védo", SecondPersonSingular = "védi", ThirdPersonSingular = "véde", FirstPersonPlural = "vediàmo", SecondPersonPlural = "vedéte", ThirdPersonPlural = "védono"},
-                    new GenericWord { Id = 3, Infinitive = "parlàre", FirstPersonSingular = "pàrlo", SecondPersonSingular = "pàrli", ThirdPersonSingular = "pàrla", FirstPersonPlural = "parliàmo", SecondPersonPlural = "parlàte", ThirdPersonPlural = "pàrlano"}
+            modelBuilder.Entity<PresentIndicative>().HasData(
+                    new PresentIndicative { Id = 1, Infinitive = "fàre", FirstPersonSingular = "fàccio", SecondPersonSingular = "fài", ThirdPersonSingular = "fà", FirstPersonPlural = "facciàmo", SecondPersonPlural = "fàte", ThirdPersonPlural = "fànno"},
+                    new PresentIndicative { Id = 2, Infinitive = "vedére", FirstPersonSingular = "védo", SecondPersonSingular = "védi", ThirdPersonSingular = "véde", FirstPersonPlural = "vediàmo", SecondPersonPlural = "vedéte", ThirdPersonPlural = "védono"},
+                    new PresentIndicative { Id = 3, Infinitive = "parlàre", FirstPersonSingular = "pàrlo", SecondPersonSingular = "pàrli", ThirdPersonSingular = "pàrla", FirstPersonPlural = "parliàmo", SecondPersonPlural = "parlàte", ThirdPersonPlural = "pàrlano"}
                 );
 
             modelBuilder.Entity<PresentPerfect>().HasData(
                     new PresentPerfect { Id = 1, Infinitive = "preparàre", FirstPersonSingular = "ho preparato", SecondPersonSingular = "hai preparato", ThirdPersonSingular = "ha preparato", FirstPersonPlural = "abbiamo preparato", SecondPersonPlural = "avete preparato", ThirdPersonPlural = "hanno preparato", UsesEssere = false },
                     new PresentPerfect { Id = 2, Infinitive = "véndere", FirstPersonSingular = "ho venduto", SecondPersonSingular = "hai venduto", ThirdPersonSingular = "ha venduto", FirstPersonPlural = "abbiamo venduto", SecondPersonPlural = "avete venduto", ThirdPersonPlural = "hanno venduto", UsesEssere = false},
                     new PresentPerfect { Id = 3, Infinitive = "andare", FirstPersonSingular = "sono andato", SecondPersonSingular = "sei andato", ThirdPersonSingular = "è andato", FirstPersonPlural = "siamo andati", SecondPersonPlural = "siete andati", ThirdPersonPlural = "sono andati", UsesEssere = true}
+                );
+
+            modelBuilder.Entity<Imperfect>().HasData(
+                    new Imperfect { Id = 1, Infinitive = "vedere", FirstPersonSingular = "védevo", SecondPersonSingular = "vedévi", ThirdPersonSingular = "vedéva", FirstPersonPlural = "vedevàmo", SecondPersonPlural = "vedevàte", ThirdPersonPlural = "vedévano"},
+                    new Imperfect { Id = 2, Infinitive = "parlàre", FirstPersonSingular = "parlàvo", SecondPersonSingular = "parlàvi", ThirdPersonSingular = "parlàva", FirstPersonPlural = "parlavàmo", SecondPersonPlural = "parlavàte", ThirdPersonPlural = "parlàvano" },
+                    new Imperfect { Id = 3, Infinitive = "venìre", FirstPersonSingular = "venìvo", SecondPersonSingular = "venìvi", ThirdPersonSingular = "venìva", FirstPersonPlural = "venivàmo", SecondPersonPlural = "venivàte", ThirdPersonPlural = "venìvano" }
                 );
         }
     }

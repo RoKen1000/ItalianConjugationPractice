@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LanguagePractice.Models
+namespace LanguagePracticeSite.Models
 {
-    public class GenericWord
+    public class Imperfect
     {
         [Key]
         [Required]

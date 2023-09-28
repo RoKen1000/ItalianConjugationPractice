@@ -1,9 +1,8 @@
-﻿using LanguagePractice.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace LanguagePracticeSite.Models
+namespace LanguagePractice.Models
 {
-    public class PresentPerfect
+    public class PresentIndicative
     {
         [Key]
         [Required]
@@ -22,7 +21,5 @@ namespace LanguagePracticeSite.Models
         public string SecondPersonPlural { get; set; }
         [Required]
         public string ThirdPersonPlural { get; set; }
-        [Required]
-        public bool UsesEssere { get; set; }
     }
 }

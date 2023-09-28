@@ -3,6 +3,7 @@ using LanguagePractice.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LanguagePracticeSite.Migrations
 {
     [DbContext(typeof(WordDatabaseContext))]
-    partial class WordDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230928153132_CreateImperfectWordsTableWithData")]
+    partial class CreateImperfectWordsTableWithData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
