@@ -12,7 +12,7 @@ namespace LanguagePractice.DataAccess.DataContext
         }
 
         public DbSet<PresentIndicative> PresentIndicativeWords { get; set; }
-        public DbSet<PassatoProssimo> PassatoProssimoPhrases { get; set; }
+        public DbSet<PresentPerfect> PresentPerfectPhrases { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,10 +22,10 @@ namespace LanguagePractice.DataAccess.DataContext
                     new PresentIndicative { Id = 3, Infinitive = "parlàre", FirstPersonSingular = "pàrlo", SecondPersonSingular = "pàrli", ThirdPersonSingular = "pàrla", FirstPersonPlural = "parliàmo", SecondPersonPlural = "parlàte", ThirdPersonPlural = "pàrlano"}
                 );
 
-            modelBuilder.Entity<PassatoProssimo>().HasData(
-                    new PassatoProssimo { Id = 1, Infinitive = "preparàre", FirstPersonSingular = "ho preparato", SecondPersonSingular = "hai preparato", ThirdPersonSingular = "ha preparato", FirstPersonPlural = "abbiamo preparato", SecondPersonPlural = "avete preparato", ThirdPersonPlural = "hanno preparato", UsesEssere = false },
-                    new PassatoProssimo { Id = 2, Infinitive = "véndere", FirstPersonSingular = "ho venduto", SecondPersonSingular = "hai venduto", ThirdPersonSingular = "ha venduto", FirstPersonPlural = "abbiamo venduto", SecondPersonPlural = "avete venduto", ThirdPersonPlural = "hanno venduto", UsesEssere = false},
-                    new PassatoProssimo { Id = 3, Infinitive = "andare", FirstPersonSingular = "sono andato", SecondPersonSingular = "sei andato", ThirdPersonSingular = "è andato", FirstPersonPlural = "siamo andati", SecondPersonPlural = "siete andati", ThirdPersonPlural = "sono andati", UsesEssere = true}
+            modelBuilder.Entity<PresentPerfect>().HasData(
+                    new PresentPerfect { Id = 1, Infinitive = "preparàre", FirstPersonSingular = "ho preparato", SecondPersonSingular = "hai preparato", ThirdPersonSingular = "ha preparato", FirstPersonPlural = "abbiamo preparato", SecondPersonPlural = "avete preparato", ThirdPersonPlural = "hanno preparato", UsesEssere = false },
+                    new PresentPerfect { Id = 2, Infinitive = "véndere", FirstPersonSingular = "ho venduto", SecondPersonSingular = "hai venduto", ThirdPersonSingular = "ha venduto", FirstPersonPlural = "abbiamo venduto", SecondPersonPlural = "avete venduto", ThirdPersonPlural = "hanno venduto", UsesEssere = false},
+                    new PresentPerfect { Id = 3, Infinitive = "andare", FirstPersonSingular = "sono andato", SecondPersonSingular = "sei andato", ThirdPersonSingular = "è andato", FirstPersonPlural = "siamo andati", SecondPersonPlural = "siete andati", ThirdPersonPlural = "sono andati", UsesEssere = true}
                 );
         }
     }

@@ -2,7 +2,7 @@
 
 namespace LanguagePracticeSite.Models
 {
-    public class PassatoProssimo
+    public class PresentPerfect
     {
         [Key]
         [Required]
