@@ -24,7 +24,7 @@ namespace LanguagePractice.Controllers
             int wordCount = _db.PresentIndicativeWords.Count();
             Random r = new Random();
             int offset = r.Next(0, wordCount);
-            PresentIndicative retrievedWord = _db.PresentIndicativeWords.Skip(offset).FirstOrDefault();
+            GenericWord retrievedWord = _db.PresentIndicativeWords.Skip(offset).FirstOrDefault();
 
             return View(retrievedWord);
         }

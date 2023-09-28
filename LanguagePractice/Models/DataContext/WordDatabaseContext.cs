@@ -11,15 +11,15 @@ namespace LanguagePractice.DataAccess.DataContext
             
         }
 
-        public DbSet<PresentIndicative> PresentIndicativeWords { get; set; }
+        public DbSet<GenericWord> PresentIndicativeWords { get; set; }
         public DbSet<PresentPerfect> PresentPerfectPhrases { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PresentIndicative>().HasData(
-                    new PresentIndicative { Id = 1, Infinitive = "fàre", FirstPersonSingular = "fàccio", SecondPersonSingular = "fài", ThirdPersonSingular = "fà", FirstPersonPlural = "facciàmo", SecondPersonPlural = "fàte", ThirdPersonPlural = "fànno"},
-                    new PresentIndicative { Id = 2, Infinitive = "vedére", FirstPersonSingular = "védo", SecondPersonSingular = "védi", ThirdPersonSingular = "véde", FirstPersonPlural = "vediàmo", SecondPersonPlural = "vedéte", ThirdPersonPlural = "védono"},
-                    new PresentIndicative { Id = 3, Infinitive = "parlàre", FirstPersonSingular = "pàrlo", SecondPersonSingular = "pàrli", ThirdPersonSingular = "pàrla", FirstPersonPlural = "parliàmo", SecondPersonPlural = "parlàte", ThirdPersonPlural = "pàrlano"}
+            modelBuilder.Entity<GenericWord>().HasData(
+                    new GenericWord { Id = 1, Infinitive = "fàre", FirstPersonSingular = "fàccio", SecondPersonSingular = "fài", ThirdPersonSingular = "fà", FirstPersonPlural = "facciàmo", SecondPersonPlural = "fàte", ThirdPersonPlural = "fànno"},
+                    new GenericWord { Id = 2, Infinitive = "vedére", FirstPersonSingular = "védo", SecondPersonSingular = "védi", ThirdPersonSingular = "véde", FirstPersonPlural = "vediàmo", SecondPersonPlural = "vedéte", ThirdPersonPlural = "védono"},
+                    new GenericWord { Id = 3, Infinitive = "parlàre", FirstPersonSingular = "pàrlo", SecondPersonSingular = "pàrli", ThirdPersonSingular = "pàrla", FirstPersonPlural = "parliàmo", SecondPersonPlural = "parlàte", ThirdPersonPlural = "pàrlano"}
                 );
 
             modelBuilder.Entity<PresentPerfect>().HasData(

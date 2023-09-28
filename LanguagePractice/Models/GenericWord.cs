@@ -2,7 +2,7 @@
 
 namespace LanguagePractice.Models
 {
-    public class PresentIndicative
+    public class GenericWord
     {
         [Key]
         [Required]
