@@ -21,10 +21,10 @@ namespace LanguagePractice.Controllers
         public IActionResult Index()
         {
 
-            int wordCount = _db.PresentIndicatives.Count();
+            int wordCount = _db.PresentIndicativeWords.Count();
             Random r = new Random();
             int offset = r.Next(0, wordCount);
-            PresentIndicative retrievedWord = _db.PresentIndicatives.Skip(offset).FirstOrDefault();
+            PresentIndicative retrievedWord = _db.PresentIndicativeWords.Skip(offset).FirstOrDefault();
 
             return View(retrievedWord);
         }
