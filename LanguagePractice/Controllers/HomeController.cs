@@ -9,24 +9,15 @@ namespace LanguagePractice.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        private readonly WordDatabaseContext _db;
        
-        public HomeController(ILogger<HomeController> logger, WordDatabaseContext db)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _db = db;
         }
 
         public IActionResult Index()
         {
-
-            int wordCount = _db.PresentIndicativeWords.Count();
-            Random r = new Random();
-            int offset = r.Next(0, wordCount);
-            PresentIndicative retrievedWord = _db.PresentIndicativeWords.Skip(offset).FirstOrDefault();
-
-            return View(retrievedWord);
+            return View();
         }
 
         public IActionResult Privacy()
