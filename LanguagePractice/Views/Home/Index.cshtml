@@ -5,22 +5,22 @@
 <form id="conj-form" style="display: flex; flex-direction: column; align-items: center;">
     <label>First person singular</label>
     <input id="firstPersonSingular" type="text" />
-    <small></small>
+    <small id="firstPersonSingular"></small>
     <label>Second person singular</label>
     <input id="secondPersonSingular" type="text" />
-    <small></small>
+    <small id="secondPersonSingular"></small>
     <label>Third person singular</label>
     <input id="thirdPersonSingular" type="text" />
-    <small></small>
+    <small id="thirdPersonSingular"></small>
     <label>First person plural</label>
     <input id="firstPersonPlural" type="text" />
-    <small></small>
+    <small id="firstPersonPlural"></small>
     <label>Second person plural</label>
     <input id="secondPersonPlural" type="text" />
-    <small></small>
+    <small id="secondPersonPlural"></small>
     <label>Third person plural</label>
     <input id="thirdPersonPlural" type="text" />
-    <small></small>
+    <small id="thirdPersonPlural"></small>
     <button style="margin: 10px;" type="submit">Submit Answers</button>
 </form>
 
@@ -28,32 +28,19 @@
     <script>
         $(document).ready(function(){
             const conjugations = @Html.Raw(Json.Serialize(Model));
-            // const answers = {};
-            // const smallText = $("small");
+          
+            $("#conj-form").on("submit", function(event){
+                event.preventDefault();
 
-            console.log(conjugations)
-                
-            // $("#conj-form").on("submit", function(event){
-            //     event.preventDefault();
+                $("#conj-form :input:not(:submit)").each(function () {
+                    if (this.value === conjugations[this.id]) {
+                        $("small#" + this.id).html("Correct!").css("color", "green")
+                    }else{
+                        $("small#" + this.id).html("Incorrect. Try again.").css("color", "red");
+                    }
+                });
 
-            //     $("#conj-form :input").each(function () {
-            //         answers[this.id] = this.value;
-            //     });
-
-                //console.log(answers)
-                
-                
-                // for (let i = 0; i < answers.length; i++){
-                //     if (answers[i] === conjugations.vedere[i]) {
-                //         smallText[i].innerHTML = "Correct!"
-                //         smallText[i].style.color = "green";
-                //     }
-                //     else{
-                //         smallText[i].innerHTML = "Incorrect. Try again."
-                //         smallText[i].style.color = "red";
-                //     }
-                // }
-        //     })
+            })
         })
     </script>
 }
