@@ -1,4 +1,5 @@
 ﻿using LanguagePractice.Models;
+using LanguagePracticeSite.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LanguagePractice.DataAccess.DataContext
@@ -10,14 +11,21 @@ namespace LanguagePractice.DataAccess.DataContext
             
         }
 
-        public DbSet<PresentIndicative> PresentIndicatives { get; set; }
+        public DbSet<PresentIndicative> PresentIndicativeWords { get; set; }
+        public DbSet<PassatoProssimo> PassatoProssimoPhrases { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PresentIndicative>().HasData(
-                    new PresentIndicative { Id = 1, Infinitive = "fare", FirstPersonSingular = "faccio", SecondPersonSingular = "fai", ThirdPersonSingular = "fa", FirstPersonPlural = "facciamo", SecondPersonPlural = "fate", ThirdPersonPlural = "fanno"},
-                    new PresentIndicative { Id = 2, Infinitive = "vedere", FirstPersonSingular = "vedo", SecondPersonSingular = "vedi", ThirdPersonSingular = "vede", FirstPersonPlural = "vediamo", SecondPersonPlural = "vedete", ThirdPersonPlural = "vedono"},
-                    new PresentIndicative { Id = 3, Infinitive = "parlare", FirstPersonSingular = "parlo", SecondPersonSingular = "parli", ThirdPersonSingular = "parla", FirstPersonPlural = "parliamo", SecondPersonPlural = "parlate", ThirdPersonPlural = "parlano"}
+                    new PresentIndicative { Id = 1, Infinitive = "fàre", FirstPersonSingular = "fàccio", SecondPersonSingular = "fài", ThirdPersonSingular = "fà", FirstPersonPlural = "facciàmo", SecondPersonPlural = "fàte", ThirdPersonPlural = "fànno"},
+                    new PresentIndicative { Id = 2, Infinitive = "vedére", FirstPersonSingular = "védo", SecondPersonSingular = "védi", ThirdPersonSingular = "véde", FirstPersonPlural = "vediàmo", SecondPersonPlural = "vedéte", ThirdPersonPlural = "védono"},
+                    new PresentIndicative { Id = 3, Infinitive = "parlàre", FirstPersonSingular = "pàrlo", SecondPersonSingular = "pàrli", ThirdPersonSingular = "pàrla", FirstPersonPlural = "parliàmo", SecondPersonPlural = "parlàte", ThirdPersonPlural = "pàrlano"}
+                );
+
+            modelBuilder.Entity<PassatoProssimo>().HasData(
+                    new PassatoProssimo { Id = 1, Infinitive = "preparàre", FirstPersonSingular = "ho preparato", SecondPersonSingular = "hai preparato", ThirdPersonSingular = "ha preparato", FirstPersonPlural = "abbiamo preparato", SecondPersonPlural = "avete preparato", ThirdPersonPlural = "hanno preparato", UsesEssere = false },
+                    new PassatoProssimo { Id = 2, Infinitive = "véndere", FirstPersonSingular = "ho venduto", SecondPersonSingular = "hai venduto", ThirdPersonSingular = "ha venduto", FirstPersonPlural = "abbiamo venduto", SecondPersonPlural = "avete venduto", ThirdPersonPlural = "hanno venduto", UsesEssere = false},
+                    new PassatoProssimo { Id = 3, Infinitive = "andare", FirstPersonSingular = "sono andato", SecondPersonSingular = "sei andato", ThirdPersonSingular = "è andato", FirstPersonPlural = "siamo andati", SecondPersonPlural = "siete andati", ThirdPersonPlural = "sono andati", UsesEssere = true}
                 );
         }
     }
