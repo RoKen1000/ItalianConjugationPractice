@@ -24,6 +24,8 @@
     <button style="margin: 10px;" type="submit">Submit Answers</button>
 </form>
 
+<button style="display: block; margin-left: auto; margin-right: auto;" type="button" id="next-word">Next word</button>
+
 @section Scripts{
     <script>
         $(document).ready(function(){
@@ -41,6 +43,12 @@
                 });
 
             })
+        })
+    </script>
+
+    <script>
+        $("#next-word").click(function(){
+            location.reload();
         })
     </script>
 }
