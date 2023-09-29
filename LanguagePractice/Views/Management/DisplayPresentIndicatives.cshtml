@@ -1,0 +1,25 @@
+﻿@using LanguagePracticeSite.Models;
+
+@model IEnumerable<PresentIndicative>
+
+<table>
+    <tr>
+        <th>Verb Id</th>
+        <th>Verb Infinitive</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+        @foreach(PresentIndicative word in Model)
+        {
+            <tr>
+                <td>@word.Id</td>
+                <td>@word.Infinitive</td>
+                <td>
+                    <i class="bi bi-pencil-square"></i>
+                </td>
+                <td>
+                    <i class="bi bi-trash3-fill"></i>
+                </td>
+            </tr>
+        }
+</table>

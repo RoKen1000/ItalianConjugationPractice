@@ -1,4 +1,5 @@
 ﻿using LanguagePractice.DataAccess.DataContext;
+using LanguagePracticeSite.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LanguagePracticeSite.Controllers
@@ -10,14 +11,49 @@ namespace LanguagePracticeSite.Controllers
         {
             _db = db;
         }
+
+        [Route("[controller]/[action]")]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Create()
+        [Route("[controller]/[action]")]
+        public IActionResult DisplayPresentIndicatives()
+        {
+            IEnumerable<PresentIndicative> presIndWords = _db.PresentIndicativeWords;
+
+            return View(presIndWords);
+        }
+
+        [Route("[controller]/DisplayPresentIndicatives/[action]")]
+        public IActionResult CreatePresentIndicative()
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/[action]")]
+        public IActionResult Create(PresentIndicative newPresentIndicative)
+        {
+            return RedirectToAction("Index");
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Route("[controller]/[action]")]
+        //public IActionResult Create(PresentPerfect newPresentPerfect)
+        //{
+        //    return RedirectToAction("Index");
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Route("[controller]/[action]")]
+        //public IActionResult Create(Imperfect newImperfect)
+        //{
+        //    return RedirectToAction("Index");
+        //}
     }
 }
