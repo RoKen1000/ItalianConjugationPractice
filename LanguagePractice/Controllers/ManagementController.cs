@@ -37,7 +37,7 @@ namespace LanguagePracticeSite.Controllers
         [Route("[controller]/[action]")]
         public IActionResult CreatePresentIndicative(PresentIndicative newPresentIndicative)
         {
-            return RedirectToAction("Index");
+            return View(newPresentIndicative);
         }
 
         //[HttpPost]
