@@ -1,4 +1,9 @@
 ﻿
+.create-forms{
+    display: flex;
+    flex-direction: column;
+}
+
 .create-forms span{
     color: red;
     text-align: center;

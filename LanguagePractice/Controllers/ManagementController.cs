@@ -37,6 +37,12 @@ namespace LanguagePracticeSite.Controllers
         [Route("[controller]/[action]")]
         public IActionResult CreatePresentIndicative(PresentIndicative newPresentIndicative)
         {
+            if(ModelState.IsValid)
+            {
+                _db.PresentIndicativeWords.Add(newPresentIndicative);
+                _db.SaveChanges();
+                return RedirectToAction("DisplayPresentIndicatives");
+            }
             return View(newPresentIndicative);
         }
 
