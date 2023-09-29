@@ -26,7 +26,7 @@ namespace LanguagePracticeSite.Controllers
             return View(presIndWords);
         }
 
-        [Route("[controller]/DisplayPresentIndicatives/[action]")]
+        [Route("[controller]/[action]")]
         public IActionResult CreatePresentIndicative()
         {
             return View();
@@ -35,7 +35,7 @@ namespace LanguagePracticeSite.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("[controller]/[action]")]
-        public IActionResult Create(PresentIndicative newPresentIndicative)
+        public IActionResult CreatePresentIndicative(PresentIndicative newPresentIndicative)
         {
             return RedirectToAction("Index");
         }

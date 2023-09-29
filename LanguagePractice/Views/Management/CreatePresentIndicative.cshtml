@@ -1,0 +1,44 @@
+﻿@using LanguagePracticeSite.Models;
+@model PresentIndicative
+
+<h1 style="text-align: center;">Add new Present Indicative verb to the database</h1>
+
+<form method="post" style="display: flex; flex-direction: column;">
+    <label asp-for="Infinitive">Infinitive</label>
+    <span asp-validation-for="Infinitive"></span>
+    <input type="text" asp-for="Infinitive" />
+    <br/>
+    <label asp-for="FirstPersonSingular">First Person Singular</label>
+    <span asp-validation-for="FirstPersonSingular"></span>
+    <input type="text" asp-for="FirstPersonSingular" />
+    <br/>
+    <label asp-for="FirstPersonSingular">First Person Singular</label>
+    <span asp-validation-for="FirstPersonSingular"></span>
+    <input type="text" asp-for="FirstPersonSingular" />
+    <br />
+    <label asp-for="SecondPersonSingular">Second Person Singular</label>
+    <span asp-validation-for="SecondPersonSingular"></span>
+    <input type="text" asp-for="SecondPersonSingular" />
+    <br />
+    <label asp-for="ThirdPersonSingular">Third Person Singular</label>
+    <span asp-validation-for="ThirdPersonSingular"></span>
+    <input type="text" asp-for="ThirdPersonSingular" />
+    <br />
+    <label asp-for="FirstPersonPlural">First Person Plural</label>
+    <span asp-validation-for="FirstPersonPlural"></span>
+    <input type="text" asp-for="FirstPersonPlural" />
+    <br />
+    <label asp-for="FirstPersonPlural">First Person Plural</label>
+    <span asp-validation-for="FirstPersonPlural"></span>
+    <input type="text" asp-for="FirstPersonPlural" />
+    <br />
+    <label asp-for="SecondPersonPlural">Second Person Plural</label>
+    <span asp-validation-for="SecondPersonPlural"></span>
+    <input type="text" asp-for="SecondPersonPlural" />
+    <br />
+    <label asp-for="ThirdPersonPlural">Third Person Plural</label>
+    <span asp-validation-for="ThirdPersonPlural"></span>
+    <input type="text" asp-for="ThirdPersonPlural" />
+    <br />
+    <button class="btn btn-success" type="submit">Add New Verb</button>
+</form>
