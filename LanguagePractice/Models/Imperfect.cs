@@ -2,7 +2,7 @@
 
 namespace LanguagePracticeSite.Models
 {
-    public class PresentIndicative
+    public class Imperfect
     {
         [Key]
         [Required]

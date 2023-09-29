@@ -3,6 +3,7 @@ using LanguagePractice.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LanguagePracticeSite.Migrations
 {
     [DbContext(typeof(WordDatabaseContext))]
-    partial class WordDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230928141235_RenamePassatoProssimoToPresentPerfect")]
+    partial class RenamePassatoProssimoToPresentPerfect
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,82 +97,6 @@ namespace LanguagePracticeSite.Migrations
                             SecondPersonSingular = "pàrli",
                             ThirdPersonPlural = "pàrlano",
                             ThirdPersonSingular = "pàrla"
-                        });
-                });
-
-            modelBuilder.Entity("LanguagePracticeSite.Models.Imperfect", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("FirstPersonPlural")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstPersonSingular")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Infinitive")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecondPersonPlural")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecondPersonSingular")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ThirdPersonPlural")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ThirdPersonSingular")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ImperfectWords");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FirstPersonPlural = "vedevàmo",
-                            FirstPersonSingular = "védevo",
-                            Infinitive = "vedere",
-                            SecondPersonPlural = "vedevàte",
-                            SecondPersonSingular = "vedévi",
-                            ThirdPersonPlural = "vedévano",
-                            ThirdPersonSingular = "vedéva"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FirstPersonPlural = "parlavàmo",
-                            FirstPersonSingular = "parlàvo",
-                            Infinitive = "parlàre",
-                            SecondPersonPlural = "parlavàte",
-                            SecondPersonSingular = "parlàvi",
-                            ThirdPersonPlural = "parlàvano",
-                            ThirdPersonSingular = "parlàva"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FirstPersonPlural = "venivàmo",
-                            FirstPersonSingular = "venìvo",
-                            Infinitive = "venìre",
-                            SecondPersonPlural = "venivàte",
-                            SecondPersonSingular = "venìvi",
-                            ThirdPersonPlural = "venìvano",
-                            ThirdPersonSingular = "venìva"
                         });
                 });
 
