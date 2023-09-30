@@ -46,13 +46,18 @@ namespace LanguagePracticeSite.Controllers
             return View(newPresentIndicative);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[Route("[controller]/[action]")]
-        //public IActionResult Create(PresentPerfect newPresentPerfect)
-        //{
-        //    return RedirectToAction("Index");
-        //}
+        [Route("[controller]/DisplayPresentIndicatives/{id}")]
+        public IActionResult EditPresentIndicative(int? id)
+        {
+            if(id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            PresentIndicative currentWord = _db.PresentIndicativeWords.FirstOrDefault(w => w.Id == id);
+
+            return View(currentWord);
+        }
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]

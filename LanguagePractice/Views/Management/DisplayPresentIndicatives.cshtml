@@ -16,7 +16,9 @@
                 <td>@word.Id</td>
                 <td>@word.Infinitive</td>
                 <td>
-                    <i class="bi bi-pencil-square"></i>
+                    <a asp-controller="Management" asp-action="EditPresentIndicative" asp-route-id="@word.Id">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
                 </td>
                 <td>
                     <i class="bi bi-trash3-fill"></i>
