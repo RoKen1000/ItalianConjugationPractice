@@ -1,14 +1,14 @@
 ﻿
-.create-forms{
+.word-forms{
     display: flex;
     flex-direction: column;
 }
 
-.create-forms span{
+.word-forms span{
     color: red;
     text-align: center;
 }
 
-.create-forms label{
+.word-forms label{
     text-align: center;
 }
