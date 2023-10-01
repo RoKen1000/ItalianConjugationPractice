@@ -203,5 +203,25 @@ namespace LanguagePracticeSite.Controllers
 
             return View(presIndWords);
         }
+
+        [Route("[controller]/[action]")]
+        public IActionResult CreateImperfect()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/[action]")]
+        public IActionResult CreateImperfect(Imperfect newImperfect)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.ImperfectWords.Add(newImperfect);
+                _db.SaveChanges();
+                return RedirectToAction("DisplayImperfects");
+            }
+            return View(newImperfect);
+        }
     }
 }
