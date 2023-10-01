@@ -250,5 +250,37 @@ namespace LanguagePracticeSite.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [Route("[controller]/[action]/{id}", Name = "ImperfDelete")]
+        public IActionResult DeleteImperfect(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            Imperfect currentWord = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+
+            return View(currentWord);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/DeleteImperfect/{id}", Name = "ImperfDelete")]
+        public IActionResult DeleteImperfectAction(int? id)
+        {
+
+            Imperfect wordToDelete = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+
+            if (wordToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _db.ImperfectWords.Remove(wordToDelete);
+            _db.SaveChanges();
+
+            return RedirectToAction("DisplayImperfects");
+        }
     }
 }
