@@ -161,5 +161,37 @@ namespace LanguagePracticeSite.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [Route("[controller]/[action]/{id}", Name = "PresPerfDelete")]
+        public IActionResult DeletePresentPerfect(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            PresentPerfect currentWord = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
+
+            return View(currentWord);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/DeletePresentPerfect/{id}", Name = "PresPerfDelete")]
+        public IActionResult DeletePresentPerfectAction(int? id)
+        {
+
+            PresentPerfect wordToDelete = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
+
+            if (wordToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _db.PresentPerfectPhrases.Remove(wordToDelete);
+            _db.SaveChanges();
+
+            return RedirectToAction("DisplayPresentPerfects");
+        }
     }
 }
