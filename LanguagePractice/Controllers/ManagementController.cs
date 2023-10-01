@@ -46,7 +46,7 @@ namespace LanguagePracticeSite.Controllers
             return View(newPresentIndicative);
         }
 
-        [Route("[controller]/DisplayPresentIndicatives/{id}")]
+        [Route("[controller]/[action]/{id}", Name = "PresIndEdit")]
         public IActionResult EditPresentIndicative(int? id)
         {
             if(id == null || id == 0)
@@ -61,8 +61,8 @@ namespace LanguagePracticeSite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("[controller]/DisplayPresentIndicatives/{id}")]
-        public IActionResult Create(PresentIndicative editedPresInd)
+        [Route("[controller]/[action]/{id}", Name = "PresIndEdit")]
+        public IActionResult EditPresentIndicative(PresentIndicative editedPresInd)
         {
             if (ModelState.IsValid)
             {
@@ -71,6 +71,19 @@ namespace LanguagePracticeSite.Controllers
                 return RedirectToAction("DisplayPresentIndicatives");   
             }
             return RedirectToAction("Index");
+        }
+
+        [Route("[controller]/[action]/{id}", Name = "PresIndDelete")]
+        public IActionResult DeletePresentIndicative(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            PresentIndicative currentWord = _db.PresentIndicativeWords.FirstOrDefault(w => w.Id == id);
+
+            return View(currentWord);
         }
     }
 }
