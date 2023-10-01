@@ -59,12 +59,18 @@ namespace LanguagePracticeSite.Controllers
             return View(currentWord);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[Route("[controller]/[action]")]
-        //public IActionResult Create(Imperfect newImperfect)
-        //{
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/DisplayPresentIndicatives/{id}")]
+        public IActionResult Create(PresentIndicative editedPresInd)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.PresentIndicativeWords.Update(editedPresInd);
+                _db.SaveChanges();
+                return RedirectToAction("DisplayPresentIndicatives");   
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
