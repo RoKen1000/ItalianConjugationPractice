@@ -114,5 +114,25 @@ namespace LanguagePracticeSite.Controllers
 
             return View(presIndWords);
         }
+
+        [Route("[controller]/[action]")]
+        public IActionResult CreatePresentPerfect()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/[action]")]
+        public IActionResult CreatePresentPerfect(PresentPerfect newPresentPerfect)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.PresentPerfectPhrases.Add(newPresentPerfect);
+                _db.SaveChanges();
+                return RedirectToAction("DisplayPresentPerfects");
+            }
+            return View(newPresentPerfect);
+        }
     }
 }
