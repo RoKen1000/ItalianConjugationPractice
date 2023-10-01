@@ -1,5 +1,4 @@
-﻿using LanguagePractice.Models;
-using LanguagePracticeSite.Models;
+﻿using LanguagePracticeSite.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LanguagePractice.DataAccess.DataContext
