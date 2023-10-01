@@ -134,5 +134,32 @@ namespace LanguagePracticeSite.Controllers
             }
             return View(newPresentPerfect);
         }
+
+        [Route("[controller]/[action]/{id}", Name = "PresPerfEdit")]
+        public IActionResult EditPresentPerfect(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            PresentPerfect currentWord = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
+
+            return View(currentWord);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/[action]/{id}", Name = "PresPerfEdit")]
+        public IActionResult EditPresentPerfect(PresentPerfect editedPresPerf)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.PresentPerfectPhrases.Update(editedPresPerf);
+                _db.SaveChanges();
+                return RedirectToAction("DisplayPresentPerfects");
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
