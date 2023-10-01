@@ -85,5 +85,24 @@ namespace LanguagePracticeSite.Controllers
 
             return View(currentWord);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/DeletePresentIndicative/{id}", Name = "PresIndDelete")]
+        public IActionResult DeletePresentIndicativeAction(int? id)
+        {
+            
+            PresentIndicative wordToDelete = _db.PresentIndicativeWords.FirstOrDefault(w => w.Id == id);
+
+            if (wordToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _db.PresentIndicativeWords.Remove(wordToDelete);
+            _db.SaveChanges();
+
+            return RedirectToAction("DisplayPresentIndicatives");
+        }
     }
 }
