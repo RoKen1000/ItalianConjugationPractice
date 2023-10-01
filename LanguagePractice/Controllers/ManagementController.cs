@@ -223,5 +223,32 @@ namespace LanguagePracticeSite.Controllers
             }
             return View(newImperfect);
         }
+
+        [Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
+        public IActionResult EditImperfect(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            Imperfect currentWord = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+
+            return View(currentWord);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
+        public IActionResult EditImperfect(Imperfect editedImperf)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.ImperfectWords.Update(editedImperf);
+                _db.SaveChanges();
+                return RedirectToAction("DisplayImperfects");
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
