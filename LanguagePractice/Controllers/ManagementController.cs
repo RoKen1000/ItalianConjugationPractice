@@ -104,5 +104,15 @@ namespace LanguagePracticeSite.Controllers
 
             return RedirectToAction("DisplayPresentIndicatives");
         }
+
+        ////////////////////////////////
+
+        [Route("[controller]/[action]")]
+        public IActionResult DisplayPresentPerfects()
+        {
+            IEnumerable<PresentPerfect> presIndWords = _db.PresentPerfectPhrases;
+
+            return View(presIndWords);
+        }
     }
 }
