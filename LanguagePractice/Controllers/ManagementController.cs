@@ -110,9 +110,9 @@ namespace LanguagePracticeSite.Controllers
         [Route("[controller]/[action]")]
         public IActionResult DisplayPresentPerfects()
         {
-            IEnumerable<PresentPerfect> presIndWords = _db.PresentPerfectPhrases;
+            IEnumerable<PresentPerfect> presPerfWords = _db.PresentPerfectPhrases;
 
-            return View(presIndWords);
+            return View(presPerfWords);
         }
 
         [Route("[controller]/[action]")]
@@ -192,6 +192,16 @@ namespace LanguagePracticeSite.Controllers
             _db.SaveChanges();
 
             return RedirectToAction("DisplayPresentPerfects");
+        }
+
+        //////////////////
+
+        [Route("[controller]/[action]")]
+        public IActionResult DisplayImperfects()
+        {
+            IEnumerable<Imperfect> presIndWords = _db.ImperfectWords;
+
+            return View(presIndWords);
         }
     }
 }
