@@ -2,7 +2,7 @@
 using LanguagePracticeSite.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LanguagePracticeSite.Controllers
+namespace LanguagePracticeSite.Areas.Admin.Controllers
 {
     public class ManagementController : Controller
     {
@@ -37,7 +37,7 @@ namespace LanguagePracticeSite.Controllers
         [Route("[controller]/[action]")]
         public IActionResult CreatePresentIndicative(PresentIndicative newPresentIndicative)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _db.PresentIndicativeWords.Add(newPresentIndicative);
                 _db.SaveChanges();
@@ -49,7 +49,7 @@ namespace LanguagePracticeSite.Controllers
         [Route("[controller]/[action]/{id}", Name = "PresIndEdit")]
         public IActionResult EditPresentIndicative(int? id)
         {
-            if(id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
@@ -68,7 +68,7 @@ namespace LanguagePracticeSite.Controllers
             {
                 _db.PresentIndicativeWords.Update(editedPresInd);
                 _db.SaveChanges();
-                return RedirectToAction("DisplayPresentIndicatives");   
+                return RedirectToAction("DisplayPresentIndicatives");
             }
             return RedirectToAction("Index");
         }
@@ -91,7 +91,7 @@ namespace LanguagePracticeSite.Controllers
         [Route("[controller]/DeletePresentIndicative/{id}", Name = "PresIndDelete")]
         public IActionResult DeletePresentIndicativeAction(int? id)
         {
-            
+
             PresentIndicative wordToDelete = _db.PresentIndicativeWords.FirstOrDefault(w => w.Id == id);
 
             if (wordToDelete == null)

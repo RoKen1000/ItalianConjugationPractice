@@ -2,7 +2,7 @@
 using LanguagePracticeSite.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LanguagePracticeSite.Controllers
+namespace LanguagePracticeSite.Areas.User.Controllers
 {
     public class ItalianController : Controller
     {
