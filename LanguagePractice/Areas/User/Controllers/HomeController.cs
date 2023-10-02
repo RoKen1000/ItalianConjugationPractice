@@ -6,6 +6,7 @@ using System.Diagnostics;
 
 namespace LanguagePracticeSite.Areas.User.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
 

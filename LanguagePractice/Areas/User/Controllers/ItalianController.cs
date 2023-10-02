@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LanguagePracticeSite.Areas.User.Controllers
 {
+    [Area("User")]
     public class ItalianController : Controller
     {
         private readonly WordDatabaseContext _db;
