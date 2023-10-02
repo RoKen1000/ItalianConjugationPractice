@@ -1,13 +1,17 @@
 ﻿@using LanguagePracticeSite.Models;
-@model PresentIndicative
+@model PresentPerfect
+@{
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<h1 style="text-align: center;">Add new Present Indicative verb to the database</h1>
+<h1 style="text-align: center;">Add new Present Perfect phrase to the database</h1>
 
 <form class="word-forms" method="post">
     <label asp-for="Infinitive">Infinitive</label>
     <span asp-validation-for="Infinitive"></span>
     <input type="text" asp-for="Infinitive" />
-    <br/>
+    <br />
     <label asp-for="FirstPersonSingular">First Person Singular</label>
     <span asp-validation-for="FirstPersonSingular"></span>
     <input type="text" asp-for="FirstPersonSingular" />

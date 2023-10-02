@@ -1,12 +1,16 @@
 ﻿@using LanguagePracticeSite.Models;
-@model Imperfect
+@model PresentIndicative
+@{
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<h1 style="text-align: center;">Delete Imperfect verb from database</h1>
+<h1 style="text-align: center;">Delete Present Indicative verb from database</h1>
 
 <form class="word-forms" method="post">
     <label asp-for="Infinitive">Infinitive</label>
     <span asp-validation-for="Infinitive"></span>
-    <input type="text" asp-for="Infinitive" disabled />
+    <input type="text" asp-for="Infinitive" disabled/>
     <br />
     <label asp-for="FirstPersonSingular">First Person Singular</label>
     <span asp-validation-for="FirstPersonSingular"></span>

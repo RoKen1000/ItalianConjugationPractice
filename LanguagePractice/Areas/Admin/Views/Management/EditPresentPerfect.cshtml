@@ -1,7 +1,11 @@
 ﻿@using LanguagePracticeSite.Models;
-@model Imperfect
+@model PresentPerfect
+@{
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<h1 style="text-align: center;">Add new Imperfect word to the database</h1>
+<h1 style="text-align: center;">Edit Present Perfect phrase in the database</h1>
 
 <form class="word-forms" method="post">
     <label asp-for="Infinitive">Infinitive</label>
@@ -32,5 +36,5 @@
     <span asp-validation-for="ThirdPersonPlural"></span>
     <input type="text" asp-for="ThirdPersonPlural" />
     <br />
-    <button class="btn btn-success" type="submit">Add New Verb</button>
+    <button class="btn btn-success" type="submit">Edit Verb</button>
 </form>

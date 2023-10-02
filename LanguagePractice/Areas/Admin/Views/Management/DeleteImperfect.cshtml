@@ -1,36 +1,40 @@
 ﻿@using LanguagePracticeSite.Models;
 @model Imperfect
+@{
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<h1 style="text-align: center;">Edit Imperfect word in the database</h1>
+<h1 style="text-align: center;">Delete Imperfect verb from database</h1>
 
 <form class="word-forms" method="post">
     <label asp-for="Infinitive">Infinitive</label>
     <span asp-validation-for="Infinitive"></span>
-    <input type="text" asp-for="Infinitive" />
+    <input type="text" asp-for="Infinitive" disabled />
     <br />
     <label asp-for="FirstPersonSingular">First Person Singular</label>
     <span asp-validation-for="FirstPersonSingular"></span>
-    <input type="text" asp-for="FirstPersonSingular" />
+    <input type="text" asp-for="FirstPersonSingular" disabled />
     <br />
     <label asp-for="SecondPersonSingular">Second Person Singular</label>
     <span asp-validation-for="SecondPersonSingular"></span>
-    <input type="text" asp-for="SecondPersonSingular" />
+    <input type="text" asp-for="SecondPersonSingular" disabled />
     <br />
     <label asp-for="ThirdPersonSingular">Third Person Singular</label>
     <span asp-validation-for="ThirdPersonSingular"></span>
-    <input type="text" asp-for="ThirdPersonSingular" />
+    <input type="text" asp-for="ThirdPersonSingular" disabled />
     <br />
     <label asp-for="FirstPersonPlural">First Person Plural</label>
     <span asp-validation-for="FirstPersonPlural"></span>
-    <input type="text" asp-for="FirstPersonPlural" />
+    <input type="text" asp-for="FirstPersonPlural" disabled />
     <br />
     <label asp-for="SecondPersonPlural">Second Person Plural</label>
     <span asp-validation-for="SecondPersonPlural"></span>
-    <input type="text" asp-for="SecondPersonPlural" />
+    <input type="text" asp-for="SecondPersonPlural" disabled />
     <br />
     <label asp-for="ThirdPersonPlural">Third Person Plural</label>
     <span asp-validation-for="ThirdPersonPlural"></span>
-    <input type="text" asp-for="ThirdPersonPlural" />
+    <input type="text" asp-for="ThirdPersonPlural" disabled />
     <br />
-    <button class="btn btn-success" type="submit">Edit Verb</button>
+    <button class="btn btn-danger" type="submit">Delete Verb</button>
 </form>
