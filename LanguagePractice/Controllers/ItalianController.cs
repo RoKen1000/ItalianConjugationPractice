@@ -11,32 +11,50 @@ namespace LanguagePracticeSite.Controllers
         {
             _db = db;
         }
-        public IActionResult PresentIndicative()
+
+        private int ProduceRandomOffset(string verbTense)
         {
-            int wordCount = _db.PresentIndicativeWords.Count();
+            int wordCount;
+
+            switch (verbTense)
+            {
+                case "present indicative":
+                    wordCount = _db.PresentIndicativeWords.Count();
+                    break;
+                case "present perfect":
+                    wordCount = _db.PresentPerfectPhrases.Count();
+                    break;
+                case "imperfect":
+                    wordCount = _db.ImperfectWords.Count();
+                    break;
+                default:
+                    wordCount = 0;
+                    break;
+            }
+
             Random r = new Random();
             int offset = r.Next(0, wordCount);
-            PresentIndicative retrievedWord = _db.PresentIndicativeWords.Skip(offset).FirstOrDefault();
+
+            return offset;
+        }
+
+        public IActionResult PresentIndicative()
+        {
+            PresentIndicative retrievedWord = _db.PresentIndicativeWords.Skip(ProduceRandomOffset("present indicative")).FirstOrDefault();
 
             return View(retrievedWord);
         }
 
         public IActionResult PresentPerfect()
         {
-            int wordCount = _db.PresentPerfectPhrases.Count();
-            Random r = new Random();
-            int offset = r.Next(0, wordCount);
-            PresentPerfect retrievedWord = _db.PresentPerfectPhrases.Skip(offset).FirstOrDefault();
+            PresentPerfect retrievedWord = _db.PresentPerfectPhrases.Skip(ProduceRandomOffset("present perfect")).FirstOrDefault();
 
             return View(retrievedWord);
         }
 
         public IActionResult Imperfect()
         {
-            int wordCount = _db.PresentIndicativeWords.Count();
-            Random r = new Random();
-            int offset = r.Next(0, wordCount);
-            Imperfect retrievedWord = _db.ImperfectWords.Skip(offset).FirstOrDefault();
+            Imperfect retrievedWord = _db.ImperfectWords.Skip(ProduceRandomOffset("imperfect")).FirstOrDefault();
 
             return View(retrievedWord);
         }
