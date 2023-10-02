@@ -1,5 +1,8 @@
 ﻿@using LanguagePracticeSite.Models;
-
+@{
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model IEnumerable<PresentPerfect>
 
 <a class="btn btn-primary" asp-controller="Management" asp-action="CreatePresentPerfect">Add New Present Perfect Phrase</a>

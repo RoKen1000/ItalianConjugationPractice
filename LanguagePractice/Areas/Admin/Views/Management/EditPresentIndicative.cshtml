@@ -1,10 +1,14 @@
 ﻿@using LanguagePracticeSite.Models;
 @model PresentIndicative
+@{
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <h1 style="text-align: center;">Edit Present Indicative verb in the database</h1>
 
 <form class="word-forms" method="post">
-    <label asp-for="Infinitive">Infinitive</label>
+    <label asp-for="Infinitive"></label>
     <span asp-validation-for="Infinitive"></span>
     <input type="text" asp-for="Infinitive" />
     <br />
@@ -34,3 +38,8 @@
     <br />
     <button class="btn btn-success" type="submit">Edit Verb</button>
 </form>
+
+    <script>
+    const conjugations = @Html.Raw(Json.Serialize(Model));
+    console.log(conjugations)
+    </script>

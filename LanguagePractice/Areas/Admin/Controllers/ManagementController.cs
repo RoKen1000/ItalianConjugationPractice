@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LanguagePracticeSite.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ManagementController : Controller
     {
         private readonly WordDatabaseContext _db;
