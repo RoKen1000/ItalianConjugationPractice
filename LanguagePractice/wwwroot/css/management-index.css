@@ -1,0 +1,36 @@
+﻿
+
+.img-container-management-index {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.img-container-management-index img {
+    width: 200px;
+    height: auto;
+}
+
+@media screen and (min-width: 500px) {
+    .img-container-management-index img{
+        width: 400px;
+    }
+}
+
+.management-links-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.management-links-container a{
+    margin: 10px;
+}
+
+@media screen and (min-width: 425px) {
+    .management-links-container {
+        width: 404px;
+    }
+}
+
