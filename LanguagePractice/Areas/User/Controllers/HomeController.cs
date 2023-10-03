@@ -1,5 +1,4 @@
-﻿using LanguagePractice.DataAccess.DataContext;
-using LanguagePractice.Models;
+﻿using LanguagePracticeSite.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
