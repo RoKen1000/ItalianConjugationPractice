@@ -5,8 +5,10 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model IEnumerable<Imperfect>
 
-<a class="btn btn-primary" asp-controller="Management" asp-action="CreateImperfect">Add New Verb</a>
-<table>
+
+<h1 class="display-titles">Current Imperfect Words in Database</h1>
+<a class="btn btn-success add-new-word-buttons" asp-controller="Management" asp-action="CreateImperfect">+ Add New Verb</a>
+<table class="word-tables">
     <tr>
         <th>Verb Id</th>
         <th>Verb Infinitive</th>
@@ -16,18 +18,24 @@
     @foreach (Imperfect word in Model)
     {
         <tr>
-            <td>@word.Id</td>
-            <td>@word.Infinitive</td>
+            <td id="word-id">@word.Id</td>
+            <td id="word-infinitive">@word.Infinitive</td>
             <td>
-                <a asp-route="ImperfEdit" asp-route-id="@word.Id">
-                    <i class="bi bi-pencil-square"></i>
-                </a>
+                <div id="edit-container" class="icon-containers">
+                    <a asp-route="ImperfEdit" asp-route-id="@word.Id">
+                        <i class="bi bi-pencil-square edit-icons"></i>
+                    </a>
+                </div>
             </td>
             <td>
-                <a asp-route="ImperfDelete" asp-route-id="@word.Id">
-                    <i class="bi bi-trash3-fill"></i>
-                </a>
+                <div class="icon-containers">
+                    <a asp-route="ImperfDelete" asp-route-id="@word.Id">
+                        <i class="bi bi-trash3-fill delete-icons"></i>
+                    </a>
+                </div>
             </td>
         </tr>
     }
 </table>
+
+<a asp-controller="Management" asp-action="Index" class="btn btn-warning back-buttons">Back to Management Index</a>

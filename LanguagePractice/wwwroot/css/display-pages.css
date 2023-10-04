@@ -1,0 +1,57 @@
+﻿
+.word-tables{
+    margin: 15px auto 15px auto;
+}
+
+.word-tables, th, td{
+    border: 1px solid black;
+}
+
+.word-tables th{
+    text-align: center;
+}
+
+.word-tables tr:nth-child(even) {
+    background-color: #D6EEEE;
+}
+
+#word-id{
+    text-align: center;
+}
+
+.word-tables th{
+    padding: 5px;
+}
+
+.edit-icons{
+    color: darkkhaki;
+}
+
+.delete-icons{
+    color: red;
+}
+
+.icon-containers{
+    display: flex;
+    justify-content: center;
+}
+
+#edit-container{
+    padding-left: 19px;
+    padding-right: 19px;
+}
+
+#word-infinitive {
+    padding: 5px;
+}
+
+.add-new-word-buttons, .back-buttons{
+    display: block;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.display-titles{
+    text-align: center;
+}

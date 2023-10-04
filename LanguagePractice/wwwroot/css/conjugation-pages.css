@@ -1,0 +1,22 @@
+﻿
+.next-word-buttons {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.submit-buttons {
+    margin: 10px;
+}
+
+.conjugation-forms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (min-width: 425px){
+    .conjugation-forms input{
+        width: 400px;
+    }
+}

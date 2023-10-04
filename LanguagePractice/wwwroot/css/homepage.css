@@ -1,0 +1,44 @@
+﻿
+.img-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.img-container img{
+    width: 200px;
+    height: auto;
+}
+
+.tense-link-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tense-link-container a{
+    margin: 10px;
+}
+
+.home-paragraphs p{
+    text-align: center;
+}
+
+@media screen and (min-width: 425px){
+    .tense-link-container{
+        width: 404px;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .img-container img {
+        width: 500px;
+        height: auto;
+    }
+
+    .tense-link-container {
+        flex-direction: row;
+        width: 600px;
+    }
+}
