@@ -18,5 +18,11 @@ namespace LanguagePracticeSite.Areas.User.Controllers
         {
             return View();
         }
+
+        [Route("[action]")]
+        public IActionResult Demo()
+        {
+            return View();
+        }
     }
 }

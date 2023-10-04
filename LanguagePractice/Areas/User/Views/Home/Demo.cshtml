@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<h1 style="text-align: center;">Demo</h1>
+
+<p style="text-align: center">This is a demo of the how the conjugation form works, using the English verb "to be" as an example. Answers given will be validated through a script and a message will display on whether the input was correct or not.</p>
+
+<h3 style="text-align:center;">Verb: To Be</h3>
+
+<form id="conj-form" class="conjugation-forms">
+    <label>First person singular (I)</label>
+    <input id="firstPersonSingular" type="text" />
+    <small id="firstPersonSingular"></small>
+    <label>Second person singular (you)</label>
+    <input id="secondPersonSingular" type="text" />
+    <small id="secondPersonSingular"></small>
+    <label>Third person singular (he/she/it)</label>
+    <input id="thirdPersonSingular" type="text" />
+    <small id="thirdPersonSingular"></small>
+    <label>First person plural (we)</label>
+    <input id="firstPersonPlural" type="text" />
+    <small id="firstPersonPlural"></small>
+    <label>Second person plural (you)</label>
+    <input id="secondPersonPlural" type="text" />
+    <small id="secondPersonPlural"></small>
+    <label>Third person plural (they)</label>
+    <input id="thirdPersonPlural" type="text" />
+    <small id="thirdPersonPlural"></small>
+    <button class="btn btn-success submit-buttons" type="submit">Submit Answers</button>
+</form>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            
+            const toBeConjugations = { firstPersonSingular: "am", secondPersonSingular: "are", thirdPersonSingular: "is",
+                firstPersonPlural: "are", secondPersonPlural: "are", thirdPersonPlural: "are"
+            }
+
+            $("#conj-form").on("submit", function (event) {
+                event.preventDefault();
+
+                $("#conj-form :input:not(:submit)").each(function () {
+                    if (this.value.toLowerCase() === toBeConjugations[this.id]) {
+                        $("small#" + this.id).html("Correct!").css("color", "green")
+                    } else {
+                        $("small#" + this.id).html("Incorrect. Try again.").css("color", "red");
+                    }
+                });
+
+            })
+        })
+    </script>
+}
