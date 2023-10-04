@@ -7,7 +7,7 @@
 
 <h2 style="text-align:center;">Verb: @Model.Infinitive</h2>
 
-<form id="conj-form" style="display: flex; flex-direction: column; align-items: center;">
+<form id="conj-form" class="conjugation-forms">
     <label>First person singular</label>
     <input id="firstPersonSingular" type="text" />
     <small id="firstPersonSingular"></small>
@@ -26,10 +26,10 @@
     <label>Third person plural</label>
     <input id="thirdPersonPlural" type="text" />
     <small id="thirdPersonPlural"></small>
-    <button style="margin: 10px;" type="submit">Submit Answers</button>
+    <button class="btn btn-success submit-buttons" type="submit">Submit Answers</button>
 </form>
 
-<button style="display: block; margin-left: auto; margin-right: auto;" type="button" id="next-word">Next word</button>
+<button class="btn btn-info next-word-buttons" type="button" id="next-word">Next word</button>
 
 @section Scripts{
     <script>
