@@ -45,7 +45,7 @@
     padding: 5px;
 }
 
-.add-new-word-buttons{
+.add-new-word-buttons, .back-buttons{
     display: block;
     width: 200px;
     margin-left: auto;
