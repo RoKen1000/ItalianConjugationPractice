@@ -39,6 +39,7 @@ namespace LanguagePracticeSite.Areas.User.Controllers
             return offset;
         }
 
+        [Route("[Controller]/[Action]")]
         public IActionResult PresentIndicative()
         {
             PresentIndicative retrievedWord = _db.PresentIndicativeWords.Skip(ProduceRandomOffset("present indicative")).FirstOrDefault();
@@ -46,6 +47,7 @@ namespace LanguagePracticeSite.Areas.User.Controllers
             return View(retrievedWord);
         }
 
+        [Route("[Controller]/[Action]")]
         public IActionResult PresentPerfect()
         {
             PresentPerfect retrievedWord = _db.PresentPerfectPhrases.Skip(ProduceRandomOffset("present perfect")).FirstOrDefault();
@@ -53,6 +55,7 @@ namespace LanguagePracticeSite.Areas.User.Controllers
             return View(retrievedWord);
         }
 
+        [Route("[Controller]/[Action]")]
         public IActionResult Imperfect()
         {
             Imperfect retrievedWord = _db.ImperfectWords.Skip(ProduceRandomOffset("imperfect")).FirstOrDefault();
