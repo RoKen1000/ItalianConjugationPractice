@@ -33,14 +33,16 @@
 @section Scripts{
     <script>
         $(document).ready(function () {
-            const conjugations = @Html.Raw(Json.Serialize(Model));
-            const to be 
+            
+            const toBeConjugations = { firstPersonSingular: "am", secondPersonSingular: "are", thirdPersonSingular: "is",
+                firstPersonPlural: "are", secondPersonPlural: "are", thirdPersonPlural: "are"
+            }
 
             $("#conj-form").on("submit", function (event) {
                 event.preventDefault();
 
                 $("#conj-form :input:not(:submit)").each(function () {
-                    if (this.value.toLowerCase() === conjugations[this.id]) {
+                    if (this.value.toLowerCase() === toBeConjugations[this.id]) {
                         $("small#" + this.id).html("Correct!").css("color", "green")
                     } else {
                         $("small#" + this.id).html("Incorrect. Try again.").css("color", "red");
