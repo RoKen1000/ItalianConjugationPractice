@@ -11,18 +11,22 @@
     <Compile Remove="Areas\Admin\Models\**" />
     <Compile Remove="Areas\User\Data\**" />
     <Compile Remove="Areas\User\Models\**" />
+    <Compile Remove="Areas\User\Views\Shared\**" />
     <Content Remove="Areas\Admin\Data\**" />
     <Content Remove="Areas\Admin\Models\**" />
     <Content Remove="Areas\User\Data\**" />
     <Content Remove="Areas\User\Models\**" />
+    <Content Remove="Areas\User\Views\Shared\**" />
     <EmbeddedResource Remove="Areas\Admin\Data\**" />
     <EmbeddedResource Remove="Areas\Admin\Models\**" />
     <EmbeddedResource Remove="Areas\User\Data\**" />
     <EmbeddedResource Remove="Areas\User\Models\**" />
+    <EmbeddedResource Remove="Areas\User\Views\Shared\**" />
     <None Remove="Areas\Admin\Data\**" />
     <None Remove="Areas\Admin\Models\**" />
     <None Remove="Areas\User\Data\**" />
     <None Remove="Areas\User\Models\**" />
+    <None Remove="Areas\User\Views\Shared\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\User\Views\Shared\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
