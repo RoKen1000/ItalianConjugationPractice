@@ -8,48 +8,24 @@
 
 <h3 style="text-align:center;">Verb: To Be</h3>
 
-<form id="conj-form" class="conjugation-forms">
-    <label>First person singular (I)</label>
-    <input id="firstPersonSingular" type="text" />
-    <small id="firstPersonSingular"></small>
-    <label>Second person singular (you)</label>
-    <input id="secondPersonSingular" type="text" />
-    <small id="secondPersonSingular"></small>
-    <label>Third person singular (he/she/it)</label>
-    <input id="thirdPersonSingular" type="text" />
-    <small id="thirdPersonSingular"></small>
-    <label>First person plural (we)</label>
-    <input id="firstPersonPlural" type="text" />
-    <small id="firstPersonPlural"></small>
-    <label>Second person plural (you)</label>
-    <input id="secondPersonPlural" type="text" />
-    <small id="secondPersonPlural"></small>
-    <label>Third person plural (they)</label>
-    <input id="thirdPersonPlural" type="text" />
-    <small id="thirdPersonPlural"></small>
+<form id="conj-form-demo" class="conjugation-forms">
+    <label for="firstPersonSingularDemo">First person singular (I)</label>
+    <input id="firstPersonSingularDemo" type="text" />
+    <small id="firstPersonSingularDemo"></small>
+    <label for="secondPersonSingularDemo">Second person singular (you)</label>
+    <input id="secondPersonSingularDemo" type="text" />
+    <small id="secondPersonSingularDemo"></small>
+    <label for="thirdPersonSingularDemo">Third person singular (he/she/it)</label>
+    <input id="thirdPersonSingularDemo" type="text" />
+    <small id="thirdPersonSingularDemo"></small>
+    <label for="firstPersonPluralDemo">First person plural (we)</label>
+    <input id="firstPersonPluralDemo" type="text" />
+    <small id="firstPersonPluralDemo"></small>
+    <label for="secondPersonPluralDemo">Second person plural (you)</label>
+    <input id="secondPersonPluralDemo" type="text" />
+    <small id="secondPersonPluralDemo"></small>
+    <label for="thirdPersonPluralDemo">Third person plural (they)</label>
+    <input id="thirdPersonPluralDemo" type="text" />
+    <small id="thirdPersonPluralDemo"></small>
     <button class="btn btn-success submit-buttons" type="submit">Submit Answers</button>
 </form>
-
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            
-            const toBeConjugations = { firstPersonSingular: "am", secondPersonSingular: "are", thirdPersonSingular: "is",
-                firstPersonPlural: "are", secondPersonPlural: "are", thirdPersonPlural: "are"
-            }
-
-            $("#conj-form").on("submit", function (event) {
-                event.preventDefault();
-
-                $("#conj-form :input:not(:submit)").each(function () {
-                    if (this.value.toLowerCase() === toBeConjugations[this.id]) {
-                        $("small#" + this.id).html("Correct!").css("color", "green")
-                    } else {
-                        $("small#" + this.id).html("Incorrect. Try again.").css("color", "red");
-                    }
-                });
-
-            })
-        })
-    </script>
-}
