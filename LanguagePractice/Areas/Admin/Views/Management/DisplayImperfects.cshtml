@@ -1,6 +1,7 @@
-﻿@using LanguagePracticeSite.Models;
-@model IEnumerable<Imperfect>
-
+﻿@model IEnumerable<Imperfect>
+@{
+    Layout = "_Layout";
+}
 
 <h1 class="display-titles">Current Imperfect Words in Database</h1>
 <a class="btn btn-success add-new-word-buttons" asp-controller="Management" asp-action="CreateImperfect">+ Add New Verb</a>
