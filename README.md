@@ -1,7 +1,7 @@
 # Italian Verb Conjugation Practice Site
 
 ## Project Overview
-This is a project that allows users to practice Italian verb conjugations. Words are taken from a database and then are passed through to the client. The user can then type their answers into a form and on submit the answers are validated with a script and are compared against the answers held in the object taken from the word database. The script then makes a message appear in the conjugation form informing the user whether their answers are correct or not. This project also offers a content management system that can interact with the database so that new verbs can be added/edited/removed  easily instead of having to repeatedly add seed data to the database.
+This is a project that allows users to practice Italian verb conjugations. A word is chosen at random from the database in the relevant tense and then passed to the client. The user can then type their answers into a form and on submit the answers are validated with a script and are compared against the answers held in the object taken from the word database. The script then makes a message appear in the conjugation form informing the user whether their answers are correct or not. This project also offers a content management system that can interact with the database so that new verbs can be added/edited/removed  easily instead of having to repeatedly add seed data to the database.
 
 This tech stack for this project is C#, ASP.NET MVC, JavaScript, JQuery, Entity Framework Core, MS SQL Server, HTML and CSS.
 
