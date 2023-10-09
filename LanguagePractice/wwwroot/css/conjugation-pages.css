@@ -1,8 +1,19 @@
 ﻿
-.next-word-buttons {
+.next-word-buttons, .accented-char-buttons {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.accented-char-buttons{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1023px){
+    .accented-char-buttons {
+        display: none;
+    }
 }
 
 .submit-buttons {
