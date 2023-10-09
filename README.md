@@ -3,7 +3,7 @@
 ## Project Overview
 This is a project that allows users to practice Italian verb conjugations. A word is chosen at random from the database in the relevant tense and then passed to the client. The user can then type their answers into a form and on submit the answers are validated with a script and are compared against the answers held in the object taken from the word database. The script then makes a message appear in the conjugation form informing the user whether their answers are correct or not. This project also offers a content management system that can interact with the database so that new verbs can be added/edited/removed  easily instead of having to repeatedly add seed data to the database.
 
-This tech stack for this project is C#, ASP.NET MVC, JavaScript, JQuery, Entity Framework Core, MS SQL Server, HTML and CSS. It is built using .NET 7. The project also uses the front-end library Bootstrap.
+This tech stack for this project is C#, ASP.NET MVC, JavaScript, JQuery, Entity Framework Core, MS SQL Server, HTML and CSS. The project also uses the front-end library Bootstrap.
 
 This site was inspired by a very old and very basically styled site I used years ago when learning noun declinations and verb conjugations with Latin. This site was instrumental for cementing the various declinations and conjugations in my mind through the exercise of typing the various verb and noun forms. I was searching for a similar website that could do the same with Italian and decided to create the site myself as a dual-exercise in the languages C# and Italian!
 
@@ -24,9 +24,11 @@ Due to the similarity of each class model used for each table, I have decided to
 
 I learned that shared views can be very useful for importing various using statements that can be used in many different views. This avoids having lots of duplicate code at the top of each file.
 
-# Packages Used
+# Packages and Frameworks Used
 
 Besides the required NuGet packages used to make the database work, the only additional package that was installed was Bootstrap Icons for the edit and delete icons in the views where all available verbs in the specified table are shown.
+
+This project has been built with .NET version 7.
 
 # Future Updates
 
