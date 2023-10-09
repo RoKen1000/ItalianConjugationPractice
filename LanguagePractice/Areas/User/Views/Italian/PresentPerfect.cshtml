@@ -28,7 +28,23 @@
     <button class="btn btn-success submit-buttons" type="submit">Submit Answers</button>
 </form>
 
-<button class="btn btn-info next-word-buttons" type="button" id="next-word">Next word</button>
+<button class="btn btn-primary next-word-buttons" type="button" id="next-word">Next word</button>
+
+<button class="btn btn-info accented-char-buttons" data-bs-toggle="offcanvas" href="#offcanvas-chars" role="button">Accented Character Code Reference</button>
+
+<div class="offcanvas offcanvas-start" id="offcanvas-chars">
+    <div class="offcanvas-header">
+        <h3 style="text-align: center;">Accented Character Codes</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul>
+            <li>à - alt + 0224</li>
+            <li>ì - alt + 0236</li>
+            <li>è - alt + 0232</li>
+        </ul>
+    </div>
+</div>
 
 @section Scripts{
     <script>
