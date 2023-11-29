@@ -43,4 +43,8 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LanguagePractice.DataAccess\LanguagePractice.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
