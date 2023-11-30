@@ -8,15 +8,11 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
     [Area("Admin")]
     public class ManagementController : Controller
     {
-        private readonly IWordManagementRepository<PresentIndicative> _presentIndicativeTable;
-        private readonly IWordManagementRepository<PresentPerfect> _presentPerfectTable;
-        private readonly IWordManagementRepository<Imperfect> _imperfectTable;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ManagementController(IWordManagementRepository<PresentIndicative> presentIndicativeTable, IWordManagementRepository<PresentPerfect> presentPerfectTable, IWordManagementRepository<Imperfect> imperfectTable)
+        public ManagementController(IUnitOfWork unitOfWork)
         {
-            _presentIndicativeTable = presentIndicativeTable;
-            _presentPerfectTable = presentPerfectTable;
-            _imperfectTable = imperfectTable;
+            _unitOfWork = unitOfWork;
         }
 
         [Route("[controller]/[action]")]
