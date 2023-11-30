@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LanguagePractice.DataAccess\LanguagePractice.DataAccess.csproj" />
+    <ProjectReference Include="..\LanguagePractice.Models\LanguagePractice.Models.csproj" />
   </ItemGroup>
 
 </Project>

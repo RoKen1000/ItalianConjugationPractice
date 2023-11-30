@@ -13,31 +13,31 @@ namespace LanguagePracticeSite.Areas.User.Controllers
             _db = db;
         }
 
-        private int ProduceRandomOffset(string verbTense)
-        {
-            int wordCount;
+        //private int ProduceRandomOffset(string verbTense)
+        //{
+        //    int wordCount;
 
-            switch (verbTense)
-            {
-                case "present indicative":
-                    wordCount = _db.PresentIndicativeWords.Count();
-                    break;
-                case "present perfect":
-                    wordCount = _db.PresentPerfectPhrases.Count();
-                    break;
-                case "imperfect":
-                    wordCount = _db.ImperfectWords.Count();
-                    break;
-                default:
-                    wordCount = 0;
-                    break;
-            }
+        //    switch (verbTense)
+        //    {
+        //        case "present indicative":
+        //            wordCount = _db.PresentIndicativeWords.Count();
+        //            break;
+        //        case "present perfect":
+        //            wordCount = _db.PresentPerfectPhrases.Count();
+        //            break;
+        //        case "imperfect":
+        //            wordCount = _db.ImperfectWords.Count();
+        //            break;
+        //        default:
+        //            wordCount = 0;
+        //            break;
+        //    }
 
-            Random r = new Random();
-            int offset = r.Next(0, wordCount);
+        //    Random r = new Random();
+        //    int offset = r.Next(0, wordCount);
 
-            return offset;
-        }
+        //    return offset;
+        //}
 
         [Route("[Controller]/[Action]")]
         public IActionResult PresentIndicative()
