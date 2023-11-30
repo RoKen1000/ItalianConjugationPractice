@@ -9,5 +9,6 @@ namespace LanguagePractice.Repositories.IRepositories
         void Delete(T word);
         IEnumerable<T> GetAll();
         T GetSingle(Expression<Func<T, bool>> filter);
+        void Save();
     }
 }

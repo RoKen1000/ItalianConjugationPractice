@@ -18,27 +18,38 @@ namespace LanguagePractice.Repositories
 
         public void Create(T word)
         {
-            throw new NotImplementedException();
+            dbSet.Add(word);
         }
 
         public void Delete(T word)
         {
-            throw new NotImplementedException();
+            dbSet.Remove(word);
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet;
+
+            return query.ToList();
         }
 
         public T GetSingle(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet;
+
+            query = query.Where(filter);
+
+            return query.FirstOrDefault();
         }
 
         public void Update(T word)
         {
-            throw new NotImplementedException();
+            dbSet.Update(word);
+        }
+
+        public void Save()
+        {
+            _db.SaveChanges();
         }
     }
 }
