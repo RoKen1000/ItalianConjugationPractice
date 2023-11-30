@@ -24,7 +24,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [Route("[controller]/[action]")]
         public IActionResult DisplayPresentIndicatives()
         {
-            IEnumerable<PresentIndicative> presIndWords = _db.PresentIndicativeWords;
+            IEnumerable<PresentIndicative> presIndWords = _unitOfWork.PresentIndicative.GetAll();
 
             return View(presIndWords);
         }
@@ -42,8 +42,10 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.PresentIndicativeWords.Add(newPresentIndicative);
-                _db.SaveChanges();
+                _unitOfWork.PresentIndicative.Create(newPresentIndicative);
+                //_db.PresentIndicativeWords.Add(newPresentIndicative);
+                //_db.SaveChanges();
+               
                 return RedirectToAction("DisplayPresentIndicatives");
             }
             return View(newPresentIndicative);

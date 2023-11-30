@@ -18,5 +18,10 @@ namespace LanguagePractice.Repositories
             PresentPerfect = new WordManagementRepository<PresentPerfect>(_db);
             Imperfect = new WordManagementRepository<Imperfect>(_db);
         }
+
+        public void Save()
+        {
+            _db.SaveChanges();
+        }
     }
 }

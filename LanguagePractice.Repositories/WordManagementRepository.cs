@@ -46,10 +46,5 @@ namespace LanguagePractice.Repositories
         {
             dbSet.Update(word);
         }
-
-        public void Save()
-        {
-            _db.SaveChanges();
-        }
     }
 }
