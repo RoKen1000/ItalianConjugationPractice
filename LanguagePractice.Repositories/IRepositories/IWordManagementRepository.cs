@@ -2,7 +2,7 @@
 
 namespace LanguagePractice.Repositories.IRepositories
 {
-    public interface IWordManagement<T> where T : class
+    public interface IWordManagementRepository<T> where T : class
     {
         void Create(T word);
         void Update(T word);
