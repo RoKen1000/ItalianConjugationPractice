@@ -197,91 +197,90 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
 
         ////////////////////
 
-        //[Route("[controller]/[action]")]
-        //public IActionResult DisplayImperfects()
-        //{
-        //    IEnumerable<Imperfect> presIndWords = _db.ImperfectWords;
+        [Route("[controller]/[action]")]
+        public IActionResult DisplayImperfects()
+        {
+            IEnumerable<Imperfect> imperfectWords = _unitOfWork.Imperfect.GetAll();
 
-        //    return View(presIndWords);
-        //}
+            return View(imperfectWords);
+        }
 
-        //[Route("[controller]/[action]")]
-        //public IActionResult CreateImperfect()
-        //{
-        //    return View();
-        //}
+        [Route("[controller]/[action]")]
+        public IActionResult CreateImperfect()
+        {
+            return View();
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[Route("[controller]/[action]")]
-        //public IActionResult CreateImperfect(Imperfect newImperfect)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _db.ImperfectWords.Add(newImperfect);
-        //        _db.SaveChanges();
-        //        return RedirectToAction("DisplayImperfects");
-        //    }
-        //    return View(newImperfect);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/[action]")]
+        public IActionResult CreateImperfect(Imperfect newImperfect)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Imperfect.Create(newImperfect);
+                _unitOfWork.Save();
+                return RedirectToAction("DisplayImperfects");
+            }
+            return View(newImperfect);
+        }
 
-        //[Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
-        //public IActionResult EditImperfect(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
+        [Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
+        public IActionResult EditImperfect(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
 
-        //    Imperfect currentWord = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+            Imperfect currentWord = _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
 
-        //    return View(currentWord);
-        //}
+            return View(currentWord);
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
-        //public IActionResult EditImperfect(Imperfect editedImperf)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _db.ImperfectWords.Update(editedImperf);
-        //        _db.SaveChanges();
-        //        return RedirectToAction("DisplayImperfects");
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
+        public IActionResult EditImperfect(Imperfect editedImperf)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Imperfect.Update(editedImperf);
+                _unitOfWork.Save();
+                return RedirectToAction("DisplayImperfects");
+            }
+            return RedirectToAction("Index");
+        }
 
-        //[Route("[controller]/[action]/{id}", Name = "ImperfDelete")]
-        //public IActionResult DeleteImperfect(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
+        [Route("[controller]/[action]/{id}", Name = "ImperfDelete")]
+        public IActionResult DeleteImperfect(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
 
-        //    Imperfect currentWord = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+            Imperfect currentWord = _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
 
-        //    return View(currentWord);
-        //}
+            return View(currentWord);
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[Route("[controller]/DeleteImperfect/{id}", Name = "ImperfDelete")]
-        //public IActionResult DeleteImperfectAction(int? id)
-        //{
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("[controller]/DeleteImperfect/{id}", Name = "ImperfDelete")]
+        public IActionResult DeleteImperfectAction(int? id)
+        {
+            Imperfect wordToDelete = _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
 
-        //    Imperfect wordToDelete = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+            if (wordToDelete == null)
+            {
+                return NotFound();
+            }
 
-        //    if (wordToDelete == null)
-        //    {
-        //        return NotFound();
-        //    }
+            _unitOfWork.Imperfect.Delete(wordToDelete);
+            _unitOfWork.Save();
 
-        //    _db.ImperfectWords.Remove(wordToDelete);
-        //    _db.SaveChanges();
-
-        //    return RedirectToAction("DisplayImperfects");
-        //}
+            return RedirectToAction("DisplayImperfects");
+        }
     }
 }
