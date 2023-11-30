@@ -1,4 +1,5 @@
 ﻿using LanguagePractice.DataAccess.DataContext;
+using LanguagePractice.Repositories.IRepositories;
 using LanguagePracticeSite.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,15 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
     [Area("Admin")]
     public class ManagementController : Controller
     {
-        private readonly WordDatabaseContext _db;
-        public ManagementController(WordDatabaseContext db)
+        private readonly IWordManagementRepository<PresentIndicative> _presentIndicativeTable;
+        private readonly IWordManagementRepository<PresentPerfect> _presentPerfectTable;
+        private readonly IWordManagementRepository<Imperfect> _imperfectTable;
+
+        public ManagementController(IWordManagementRepository<PresentIndicative> presentIndicativeTable, IWordManagementRepository<PresentPerfect> presentPerfectTable, IWordManagementRepository<Imperfect> imperfectTable)
         {
-            _db = db;
+            _presentIndicativeTable = presentIndicativeTable;
+            _presentPerfectTable = presentPerfectTable;
+            _imperfectTable = imperfectTable;
         }
 
         [Route("[controller]/[action]")]
@@ -108,180 +114,180 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
 
         ////////////////////////////////
 
-        [Route("[controller]/[action]")]
-        public IActionResult DisplayPresentPerfects()
-        {
-            IEnumerable<PresentPerfect> presPerfWords = _db.PresentPerfectPhrases;
+        //[Route("[controller]/[action]")]
+        //public IActionResult DisplayPresentPerfects()
+        //{
+        //    IEnumerable<PresentPerfect> presPerfWords = _db.PresentPerfectPhrases;
 
-            return View(presPerfWords);
-        }
+        //    return View(presPerfWords);
+        //}
 
-        [Route("[controller]/[action]")]
-        public IActionResult CreatePresentPerfect()
-        {
-            return View();
-        }
+        //[Route("[controller]/[action]")]
+        //public IActionResult CreatePresentPerfect()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("[controller]/[action]")]
-        public IActionResult CreatePresentPerfect(PresentPerfect newPresentPerfect)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.PresentPerfectPhrases.Add(newPresentPerfect);
-                _db.SaveChanges();
-                return RedirectToAction("DisplayPresentPerfects");
-            }
-            return View(newPresentPerfect);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Route("[controller]/[action]")]
+        //public IActionResult CreatePresentPerfect(PresentPerfect newPresentPerfect)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _db.PresentPerfectPhrases.Add(newPresentPerfect);
+        //        _db.SaveChanges();
+        //        return RedirectToAction("DisplayPresentPerfects");
+        //    }
+        //    return View(newPresentPerfect);
+        //}
 
-        [Route("[controller]/[action]/{id}", Name = "PresPerfEdit")]
-        public IActionResult EditPresentPerfect(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+        //[Route("[controller]/[action]/{id}", Name = "PresPerfEdit")]
+        //public IActionResult EditPresentPerfect(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
 
-            PresentPerfect currentWord = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
+        //    PresentPerfect currentWord = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
 
-            return View(currentWord);
-        }
+        //    return View(currentWord);
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("[controller]/[action]/{id}", Name = "PresPerfEdit")]
-        public IActionResult EditPresentPerfect(PresentPerfect editedPresPerf)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.PresentPerfectPhrases.Update(editedPresPerf);
-                _db.SaveChanges();
-                return RedirectToAction("DisplayPresentPerfects");
-            }
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Route("[controller]/[action]/{id}", Name = "PresPerfEdit")]
+        //public IActionResult EditPresentPerfect(PresentPerfect editedPresPerf)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _db.PresentPerfectPhrases.Update(editedPresPerf);
+        //        _db.SaveChanges();
+        //        return RedirectToAction("DisplayPresentPerfects");
+        //    }
+        //    return RedirectToAction("Index");
+        //}
 
-        [Route("[controller]/[action]/{id}", Name = "PresPerfDelete")]
-        public IActionResult DeletePresentPerfect(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+        //[Route("[controller]/[action]/{id}", Name = "PresPerfDelete")]
+        //public IActionResult DeletePresentPerfect(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
 
-            PresentPerfect currentWord = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
+        //    PresentPerfect currentWord = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
 
-            return View(currentWord);
-        }
+        //    return View(currentWord);
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("[controller]/DeletePresentPerfect/{id}", Name = "PresPerfDelete")]
-        public IActionResult DeletePresentPerfectAction(int? id)
-        {
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Route("[controller]/DeletePresentPerfect/{id}", Name = "PresPerfDelete")]
+        //public IActionResult DeletePresentPerfectAction(int? id)
+        //{
 
-            PresentPerfect wordToDelete = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
+        //    PresentPerfect wordToDelete = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
 
-            if (wordToDelete == null)
-            {
-                return NotFound();
-            }
+        //    if (wordToDelete == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _db.PresentPerfectPhrases.Remove(wordToDelete);
-            _db.SaveChanges();
+        //    _db.PresentPerfectPhrases.Remove(wordToDelete);
+        //    _db.SaveChanges();
 
-            return RedirectToAction("DisplayPresentPerfects");
-        }
+        //    return RedirectToAction("DisplayPresentPerfects");
+        //}
 
-        //////////////////
+        ////////////////////
 
-        [Route("[controller]/[action]")]
-        public IActionResult DisplayImperfects()
-        {
-            IEnumerable<Imperfect> presIndWords = _db.ImperfectWords;
+        //[Route("[controller]/[action]")]
+        //public IActionResult DisplayImperfects()
+        //{
+        //    IEnumerable<Imperfect> presIndWords = _db.ImperfectWords;
 
-            return View(presIndWords);
-        }
+        //    return View(presIndWords);
+        //}
 
-        [Route("[controller]/[action]")]
-        public IActionResult CreateImperfect()
-        {
-            return View();
-        }
+        //[Route("[controller]/[action]")]
+        //public IActionResult CreateImperfect()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("[controller]/[action]")]
-        public IActionResult CreateImperfect(Imperfect newImperfect)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.ImperfectWords.Add(newImperfect);
-                _db.SaveChanges();
-                return RedirectToAction("DisplayImperfects");
-            }
-            return View(newImperfect);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Route("[controller]/[action]")]
+        //public IActionResult CreateImperfect(Imperfect newImperfect)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _db.ImperfectWords.Add(newImperfect);
+        //        _db.SaveChanges();
+        //        return RedirectToAction("DisplayImperfects");
+        //    }
+        //    return View(newImperfect);
+        //}
 
-        [Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
-        public IActionResult EditImperfect(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+        //[Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
+        //public IActionResult EditImperfect(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
 
-            Imperfect currentWord = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+        //    Imperfect currentWord = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
 
-            return View(currentWord);
-        }
+        //    return View(currentWord);
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
-        public IActionResult EditImperfect(Imperfect editedImperf)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.ImperfectWords.Update(editedImperf);
-                _db.SaveChanges();
-                return RedirectToAction("DisplayImperfects");
-            }
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
+        //public IActionResult EditImperfect(Imperfect editedImperf)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _db.ImperfectWords.Update(editedImperf);
+        //        _db.SaveChanges();
+        //        return RedirectToAction("DisplayImperfects");
+        //    }
+        //    return RedirectToAction("Index");
+        //}
 
-        [Route("[controller]/[action]/{id}", Name = "ImperfDelete")]
-        public IActionResult DeleteImperfect(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+        //[Route("[controller]/[action]/{id}", Name = "ImperfDelete")]
+        //public IActionResult DeleteImperfect(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
 
-            Imperfect currentWord = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+        //    Imperfect currentWord = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
 
-            return View(currentWord);
-        }
+        //    return View(currentWord);
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("[controller]/DeleteImperfect/{id}", Name = "ImperfDelete")]
-        public IActionResult DeleteImperfectAction(int? id)
-        {
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Route("[controller]/DeleteImperfect/{id}", Name = "ImperfDelete")]
+        //public IActionResult DeleteImperfectAction(int? id)
+        //{
 
-            Imperfect wordToDelete = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+        //    Imperfect wordToDelete = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
 
-            if (wordToDelete == null)
-            {
-                return NotFound();
-            }
+        //    if (wordToDelete == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _db.ImperfectWords.Remove(wordToDelete);
-            _db.SaveChanges();
+        //    _db.ImperfectWords.Remove(wordToDelete);
+        //    _db.SaveChanges();
 
-            return RedirectToAction("DisplayImperfects");
-        }
+        //    return RedirectToAction("DisplayImperfects");
+        //}
     }
 }
