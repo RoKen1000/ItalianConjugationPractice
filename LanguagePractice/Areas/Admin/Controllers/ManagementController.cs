@@ -43,9 +43,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _unitOfWork.PresentIndicative.Create(newPresentIndicative);
-                //_db.PresentIndicativeWords.Add(newPresentIndicative);
-                //_db.SaveChanges();
-               
+                _unitOfWork.Save();
                 return RedirectToAction("DisplayPresentIndicatives");
             }
             return View(newPresentIndicative);
@@ -59,7 +57,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            PresentIndicative currentWord = _db.PresentIndicativeWords.FirstOrDefault(w => w.Id == id);
+            PresentIndicative currentWord = _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
 
             return View(currentWord);
         }
@@ -71,8 +69,8 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.PresentIndicativeWords.Update(editedPresInd);
-                _db.SaveChanges();
+                _unitOfWork.PresentIndicative.Update(editedPresInd);
+                _unitOfWork.Save();
                 return RedirectToAction("DisplayPresentIndicatives");
             }
             return RedirectToAction("Index");
@@ -86,7 +84,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            PresentIndicative currentWord = _db.PresentIndicativeWords.FirstOrDefault(w => w.Id == id);
+            PresentIndicative currentWord = _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
 
             return View(currentWord);
         }
@@ -96,16 +94,15 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [Route("[controller]/DeletePresentIndicative/{id}", Name = "PresIndDelete")]
         public IActionResult DeletePresentIndicativeAction(int? id)
         {
-
-            PresentIndicative wordToDelete = _db.PresentIndicativeWords.FirstOrDefault(w => w.Id == id);
+            PresentIndicative wordToDelete = _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
 
             if (wordToDelete == null)
             {
                 return NotFound();
             }
 
-            _db.PresentIndicativeWords.Remove(wordToDelete);
-            _db.SaveChanges();
+            _unitOfWork.PresentIndicative.Delete(wordToDelete);
+            _unitOfWork.Save();
 
             return RedirectToAction("DisplayPresentIndicatives");
         }
