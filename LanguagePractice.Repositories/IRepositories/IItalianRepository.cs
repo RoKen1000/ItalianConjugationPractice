@@ -1,7 +1,7 @@
 ﻿
 namespace LanguagePractice.Repositories.IRepositories
 {
-    internal interface IItalianRepository<T> where T : class
+    internal interface IItalianRepository
     {
         int ProduceRandomOffset(string verbTense);
         void PresentIndicative();
