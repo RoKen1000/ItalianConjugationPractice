@@ -1,4 +1,5 @@
 ﻿using LanguagePractice.DataAccess.DataContext;
+using LanguagePractice.Repositories.IRepositories;
 using LanguagePracticeSite.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,11 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
     [Area("Admin")]
     public class ManagementController : Controller
     {
-        private readonly WordDatabaseContext _db;
-        public ManagementController(WordDatabaseContext db)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public ManagementController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
 
         [Route("[controller]/[action]")]
@@ -22,7 +24,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [Route("[controller]/[action]")]
         public IActionResult DisplayPresentIndicatives()
         {
-            IEnumerable<PresentIndicative> presIndWords = _db.PresentIndicativeWords;
+            IEnumerable<PresentIndicative> presIndWords = _unitOfWork.PresentIndicative.GetAll();
 
             return View(presIndWords);
         }
@@ -40,8 +42,8 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.PresentIndicativeWords.Add(newPresentIndicative);
-                _db.SaveChanges();
+                _unitOfWork.PresentIndicative.Create(newPresentIndicative);
+                _unitOfWork.Save();
                 return RedirectToAction("DisplayPresentIndicatives");
             }
             return View(newPresentIndicative);
@@ -55,7 +57,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            PresentIndicative currentWord = _db.PresentIndicativeWords.FirstOrDefault(w => w.Id == id);
+            PresentIndicative currentWord = _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
 
             return View(currentWord);
         }
@@ -67,8 +69,8 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.PresentIndicativeWords.Update(editedPresInd);
-                _db.SaveChanges();
+                _unitOfWork.PresentIndicative.Update(editedPresInd);
+                _unitOfWork.Save();
                 return RedirectToAction("DisplayPresentIndicatives");
             }
             return RedirectToAction("Index");
@@ -82,7 +84,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            PresentIndicative currentWord = _db.PresentIndicativeWords.FirstOrDefault(w => w.Id == id);
+            PresentIndicative currentWord = _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
 
             return View(currentWord);
         }
@@ -92,16 +94,15 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [Route("[controller]/DeletePresentIndicative/{id}", Name = "PresIndDelete")]
         public IActionResult DeletePresentIndicativeAction(int? id)
         {
-
-            PresentIndicative wordToDelete = _db.PresentIndicativeWords.FirstOrDefault(w => w.Id == id);
+            PresentIndicative wordToDelete = _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
 
             if (wordToDelete == null)
             {
                 return NotFound();
             }
 
-            _db.PresentIndicativeWords.Remove(wordToDelete);
-            _db.SaveChanges();
+            _unitOfWork.PresentIndicative.Delete(wordToDelete);
+            _unitOfWork.Save();
 
             return RedirectToAction("DisplayPresentIndicatives");
         }
@@ -111,7 +112,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [Route("[controller]/[action]")]
         public IActionResult DisplayPresentPerfects()
         {
-            IEnumerable<PresentPerfect> presPerfWords = _db.PresentPerfectPhrases;
+            IEnumerable<PresentPerfect> presPerfWords = _unitOfWork.PresentPerfect.GetAll();
 
             return View(presPerfWords);
         }
@@ -129,8 +130,8 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.PresentPerfectPhrases.Add(newPresentPerfect);
-                _db.SaveChanges();
+                _unitOfWork.PresentPerfect.Create(newPresentPerfect);
+                _unitOfWork.Save();
                 return RedirectToAction("DisplayPresentPerfects");
             }
             return View(newPresentPerfect);
@@ -144,7 +145,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            PresentPerfect currentWord = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
+            PresentPerfect currentWord = _unitOfWork.PresentPerfect.GetSingle(w => w.Id == id);
 
             return View(currentWord);
         }
@@ -156,8 +157,8 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.PresentPerfectPhrases.Update(editedPresPerf);
-                _db.SaveChanges();
+                _unitOfWork.PresentPerfect.Update(editedPresPerf);
+                _unitOfWork.Save();
                 return RedirectToAction("DisplayPresentPerfects");
             }
             return RedirectToAction("Index");
@@ -171,7 +172,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            PresentPerfect currentWord = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
+            PresentPerfect currentWord = _unitOfWork.PresentPerfect.GetSingle(w => w.Id == id);
 
             return View(currentWord);
         }
@@ -181,28 +182,27 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [Route("[controller]/DeletePresentPerfect/{id}", Name = "PresPerfDelete")]
         public IActionResult DeletePresentPerfectAction(int? id)
         {
-
-            PresentPerfect wordToDelete = _db.PresentPerfectPhrases.FirstOrDefault(w => w.Id == id);
+            PresentPerfect wordToDelete = _unitOfWork.PresentPerfect.GetSingle(w => w.Id == id);
 
             if (wordToDelete == null)
             {
                 return NotFound();
             }
 
-            _db.PresentPerfectPhrases.Remove(wordToDelete);
-            _db.SaveChanges();
+            _unitOfWork.PresentPerfect.Delete(wordToDelete);
+            _unitOfWork.Save();
 
             return RedirectToAction("DisplayPresentPerfects");
         }
 
-        //////////////////
+        ////////////////////
 
         [Route("[controller]/[action]")]
         public IActionResult DisplayImperfects()
         {
-            IEnumerable<Imperfect> presIndWords = _db.ImperfectWords;
+            IEnumerable<Imperfect> imperfectWords = _unitOfWork.Imperfect.GetAll();
 
-            return View(presIndWords);
+            return View(imperfectWords);
         }
 
         [Route("[controller]/[action]")]
@@ -218,8 +218,8 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.ImperfectWords.Add(newImperfect);
-                _db.SaveChanges();
+                _unitOfWork.Imperfect.Create(newImperfect);
+                _unitOfWork.Save();
                 return RedirectToAction("DisplayImperfects");
             }
             return View(newImperfect);
@@ -233,7 +233,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            Imperfect currentWord = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+            Imperfect currentWord = _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
 
             return View(currentWord);
         }
@@ -245,8 +245,8 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.ImperfectWords.Update(editedImperf);
-                _db.SaveChanges();
+                _unitOfWork.Imperfect.Update(editedImperf);
+                _unitOfWork.Save();
                 return RedirectToAction("DisplayImperfects");
             }
             return RedirectToAction("Index");
@@ -260,7 +260,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            Imperfect currentWord = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+            Imperfect currentWord = _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
 
             return View(currentWord);
         }
@@ -270,16 +270,15 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [Route("[controller]/DeleteImperfect/{id}", Name = "ImperfDelete")]
         public IActionResult DeleteImperfectAction(int? id)
         {
-
-            Imperfect wordToDelete = _db.ImperfectWords.FirstOrDefault(w => w.Id == id);
+            Imperfect wordToDelete = _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
 
             if (wordToDelete == null)
             {
                 return NotFound();
             }
 
-            _db.ImperfectWords.Remove(wordToDelete);
-            _db.SaveChanges();
+            _unitOfWork.Imperfect.Delete(wordToDelete);
+            _unitOfWork.Save();
 
             return RedirectToAction("DisplayImperfects");
         }

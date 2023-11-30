@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using LanguagePractice.DataAccess.DataContext;
+using LanguagePractice.Repositories.IRepositories;
+using LanguagePractice.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<WordDatabaseContext>(
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
+builder.Services.AddScoped<IItalianRepository, ItalianRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

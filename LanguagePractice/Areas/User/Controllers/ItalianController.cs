@@ -1,48 +1,24 @@
 ﻿using LanguagePractice.DataAccess.DataContext;
 using LanguagePracticeSite.Models;
 using Microsoft.AspNetCore.Mvc;
+using LanguagePractice.Repositories.IRepositories;
 
 namespace LanguagePracticeSite.Areas.User.Controllers
 {
     [Area("User")]
     public class ItalianController : Controller
     {
-        private readonly WordDatabaseContext _db;
-        public ItalianController(WordDatabaseContext db)
+        private readonly IItalianRepository _italianRepository;
+
+        public ItalianController(IItalianRepository italianRepository)
         {
-            _db = db;
-        }
-
-        private int ProduceRandomOffset(string verbTense)
-        {
-            int wordCount;
-
-            switch (verbTense)
-            {
-                case "present indicative":
-                    wordCount = _db.PresentIndicativeWords.Count();
-                    break;
-                case "present perfect":
-                    wordCount = _db.PresentPerfectPhrases.Count();
-                    break;
-                case "imperfect":
-                    wordCount = _db.ImperfectWords.Count();
-                    break;
-                default:
-                    wordCount = 0;
-                    break;
-            }
-
-            Random r = new Random();
-            int offset = r.Next(0, wordCount);
-
-            return offset;
+            _italianRepository = italianRepository;
         }
 
         [Route("[Controller]/[Action]")]
         public IActionResult PresentIndicative()
         {
-            PresentIndicative retrievedWord = _db.PresentIndicativeWords.Skip(ProduceRandomOffset("present indicative")).FirstOrDefault();
+            PresentIndicative retrievedWord = _italianRepository.PresentIndicative();
 
             return View(retrievedWord);
         }
@@ -50,7 +26,7 @@ namespace LanguagePracticeSite.Areas.User.Controllers
         [Route("[Controller]/[Action]")]
         public IActionResult PresentPerfect()
         {
-            PresentPerfect retrievedWord = _db.PresentPerfectPhrases.Skip(ProduceRandomOffset("present perfect")).FirstOrDefault();
+            PresentPerfect retrievedWord = _italianRepository.PresentPerfect();
 
             return View(retrievedWord);
         }
@@ -58,7 +34,7 @@ namespace LanguagePracticeSite.Areas.User.Controllers
         [Route("[Controller]/[Action]")]
         public IActionResult Imperfect()
         {
-            Imperfect retrievedWord = _db.ImperfectWords.Skip(ProduceRandomOffset("imperfect")).FirstOrDefault();
+            Imperfect retrievedWord = _italianRepository.Imperfect();
 
             return View(retrievedWord);
         }
