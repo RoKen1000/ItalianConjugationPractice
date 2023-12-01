@@ -21,6 +21,10 @@ If using Visual Studio simply run the project as normal by clicking the launch b
 
 > dotnet run
 
+## Features
+
+The site uses responsive design for both mobile, tablet and desktop views. An example of this would be the character code reference button for accented characters that appears in the conjugation practice views. Clicking the button creates an offcanvas side bar showing the various character codes required to input accented characters when using a keyboard. This button only appears when using a view width for laptop and desktop views (1025px or greater). Views that are below this width threshold have this button hidden as mobiles and tablets have their own methods of inputting accented characters and do not need to manually input character codes. 
+
 ## Challenges, Decisions and Lessons Learned
 The present perfect (passato prossimo) tense can be irregular when used with the auxiliary verb essere (to be) rather than avere (to have) which most present perfect phrases use. It was a bit of a challenge to work out how to allow these irregular past participle forms when the verb uses essere. I decided to make a custom script that validates input in the client side to allow for any of the alternate correct answers rather than hardcode all of the answers into the PresentPerfect class object. If the retrieved word has a "usesEssere" property then alternate validation logic is used in the script where it allows masculine or feminine forms of the past participle to be correct. 
 
@@ -30,10 +34,10 @@ Due to the similarity of each class model used for each table, I have decided to
 
 I learned that shared views can be very useful for importing various using statements that can be used in many different views. This avoids having lots of duplicate code at the top of each file.
 
-# Packages and Frameworks Used
+## Packages and Frameworks Used
 
 Besides the required NuGet packages used to make the database work, the only additional package that was installed was Bootstrap Icons for the edit and delete icons in the views where all available verbs in the specified table are shown.
 
-# Future Updates
+## Future Updates
 
 Currently the project allows practice for the Present Indicative, Present Perfect and Imperfect tenses. More tenses and verbs will be added in the future as well as various other updates.
