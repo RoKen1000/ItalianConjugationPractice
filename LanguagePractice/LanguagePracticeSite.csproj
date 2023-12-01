@@ -34,10 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\LanguagePractice.DataAccess\LanguagePractice.DataAccess.csproj" />
     <ProjectReference Include="..\LanguagePractice.Repositories\LanguagePractice.Repositories.csproj" />
   </ItemGroup>
