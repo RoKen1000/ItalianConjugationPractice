@@ -12,3 +12,11 @@
 .word-forms label{
     text-align: center;
 }
+
+.crud-back-buttons{
+    display: block;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+}

@@ -37,7 +37,4 @@
     <button class="btn btn-success" type="submit">Edit Verb</button>
 </form>
 
-    <script>
-    const conjugations = @Html.Raw(Json.Serialize(Model));
-    console.log(conjugations)
-    </script>
+<a class="btn btn-warning crud-back-buttons" asp-area="Admin" asp-controller="Management" asp-action="DisplayPresentIndicatives">Back</a>
