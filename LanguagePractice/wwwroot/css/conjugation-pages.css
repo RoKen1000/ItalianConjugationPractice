@@ -31,3 +31,19 @@
         width: 400px;
     }
 }
+
+.correct-animation{
+    animation: correct 0.5s;
+}
+
+@keyframes correct {
+    from {
+        font-size: .875em;
+    }
+    50% {
+        font-size: large 
+    }
+    to {
+        font-size: .875em;
+    }
+}
