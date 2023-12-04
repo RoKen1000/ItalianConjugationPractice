@@ -16,7 +16,7 @@
                     if (this.value.toLowerCase() === conjugations[this.id] || this.value.toLowerCase() === feminineFormSingular) {
                         $("small#" + this.id).html("Correct!").css("color", "green").addClass("correct-animation");
                     } else {
-                        $("small#" + this.id).html("Incorrect. Try again.").css("color", "red");
+                        $("small#" + this.id).html("Incorrect. Try again.").css("color", "red").removeClass("correct-animation");
                     }
                 } else if (pluralConjugations.includes(this.id)) {
 
@@ -25,7 +25,7 @@
                     if (this.value.toLowerCase() === conjugations[this.id] || this.value.toLowerCase() === feminineFormPlural) {
                         $("small#" + this.id).html("Correct!").css("color", "green").addClass("correct-animation");
                     } else {
-                        $("small#" + this.id).html("Incorrect. Try again.").css("color", "red");
+                        $("small#" + this.id).html("Incorrect. Try again.").css("color", "red").removeClass("correct-animation");
                     }
                 }
 
@@ -34,7 +34,7 @@
                 if (this.value.toLowerCase() === conjugations[this.id]) {
                     $("small#" + this.id).html("Correct!").css("color", "green").addClass("correct-animation");
                 } else {
-                    $("small#" + this.id).html("Incorrect. Try again.").css("color", "red");
+                    $("small#" + this.id).html("Incorrect. Try again.").css("color", "red").removeClass("correct-animation");
                 }
             }
         });
