@@ -4,7 +4,7 @@ $(".submit-buttons").on("click", function () {
 
         let correctAnswers = 0;
 
-        const smallClasses = $("#conj-form").find("small").each(function () {
+        $("#conj-form").find("small").each(function () {
             if ($(this).attr("class") === "correct-animation") {
                 correctAnswers++;
             }
