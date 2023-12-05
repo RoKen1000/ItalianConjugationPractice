@@ -21,5 +21,7 @@ namespace LanguagePracticeSite.Models
         public string SecondPersonPlural { get; set; }
         [Required]
         public string ThirdPersonPlural { get; set; }
+        [Required]
+        public string EnglishTranslation { get; set; }
     }
 }

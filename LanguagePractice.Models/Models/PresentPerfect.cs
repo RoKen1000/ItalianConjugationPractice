@@ -23,5 +23,7 @@ namespace LanguagePracticeSite.Models
         public string ThirdPersonPlural { get; set; }
         [Required]
         public bool UsesEssere { get; set; }
+        [Required]
+        public string EnglishTranslation { get; set; }
     }
 }
