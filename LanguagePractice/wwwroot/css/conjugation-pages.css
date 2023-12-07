@@ -46,3 +46,20 @@
         font-size: .875em;
     }
 }
+
+.incorrect-animation{
+    animation: incorrect 0.5s;
+}
+
+@keyframes incorrect{
+    from{
+        margin-left: 50px;
+    }
+    50%{
+        margin-left: 0px;
+        margin-right: 50px;
+    }
+    to{
+        margin-right: 0;
+    }
+}
