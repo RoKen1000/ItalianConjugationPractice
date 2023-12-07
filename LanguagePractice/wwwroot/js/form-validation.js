@@ -4,7 +4,7 @@
         event.preventDefault();
 
         $("#conj-form :input:not(:submit)").each(function () {
-            let feminineForm = "";
+            let feminineForm;
 
             if (conjugations.usesEssere === true) {
 
@@ -19,9 +19,9 @@
             }
 
             if (this.value.toLowerCase() === conjugations[this.id] || this.value.toLowerCase() === feminineForm) {
-                $("small#" + this.id).html("Correct!").css("color", "green").addClass("correct-animation");
+                $("small#" + this.id).html("Correct!").css("color", "green").removeClass("incorrect-animation").addClass("correct-animation");
             } else {
-                $("small#" + this.id).html("Incorrect. Try again.").css("color", "red").removeClass("correct-animation");
+                $("small#" + this.id).html("Incorrect. Try again.").css("color", "red").removeClass("correct-animation").addClass("incorrect-animation");
             }
         });
 
