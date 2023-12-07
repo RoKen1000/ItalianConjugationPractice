@@ -4,7 +4,7 @@
         event.preventDefault();
 
         $("#conj-form :input:not(:submit)").each(function () {
-            let feminineForm = "";
+            let feminineForm;
 
             if (conjugations.usesEssere === true) {
 
