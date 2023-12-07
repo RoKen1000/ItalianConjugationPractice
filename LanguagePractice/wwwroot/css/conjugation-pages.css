@@ -48,18 +48,44 @@
 }
 
 .incorrect-animation{
-    animation: incorrect 0.5s;
+    animation: incorrect 0.4s;
 }
 
 @keyframes incorrect{
     from{
+        margin-left: 0px;
+    }
+    10%{
+        margin-right: 50px;
+
+    }
+    20%{
+        margin-right: 0px;
+
+    }
+    30%{
         margin-left: 50px;
     }
-    50%{
+    40%{
         margin-left: 0px;
+    }
+    50% {
+        margin-left: 0px;
+    }
+
+    60% {
         margin-right: 50px;
     }
-    to{
-        margin-right: 0;
+
+    70% {
+        margin-right: 0px;
+    }
+
+    80% {
+        margin-left: 50px;
+    }
+
+    90% {
+        margin-left: 0px;
     }
 }
