@@ -1,6 +1,7 @@
 ﻿using LanguagePractice.DataAccess.DataContext;
 using LanguagePractice.Repositories.IRepositories;
 using LanguagePracticeSite.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LanguagePractice.Repositories
 {
@@ -13,9 +14,9 @@ namespace LanguagePractice.Repositories
             _db = db;
         }
 
-        public Imperfect Imperfect()
+        public async Task<Imperfect> Imperfect()
         {
-            Imperfect retrievedWord = _db.ImperfectWords.Skip(ProduceRandomOffset("imperfect")).FirstOrDefault();
+            var retrievedWord = await _db.ImperfectWords.Skip(ProduceRandomOffset("imperfect")).FirstOrDefaultAsync();
 
             return retrievedWord;
         }

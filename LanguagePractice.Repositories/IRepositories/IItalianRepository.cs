@@ -7,6 +7,6 @@ namespace LanguagePractice.Repositories.IRepositories
         int ProduceRandomOffset(string verbTense);
         PresentIndicative PresentIndicative();
         PresentPerfect PresentPerfect();
-        Imperfect Imperfect();
+        Task<Imperfect> Imperfect();
     }
 }
