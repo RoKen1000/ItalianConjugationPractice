@@ -4,9 +4,8 @@ namespace LanguagePractice.Repositories.IRepositories
 {
     public interface IItalianRepository
     {
-        int ProduceRandomOffset(string verbTense);
-        PresentIndicative PresentIndicative();
-        PresentPerfect PresentPerfect();
-        Task<Imperfect> Imperfect();
+        Task<PresentIndicative> GetPresentIndicative();
+        Task<PresentPerfect> GetPresentPerfect();
+        Task<Imperfect> GetImperfect();
     }
 }
