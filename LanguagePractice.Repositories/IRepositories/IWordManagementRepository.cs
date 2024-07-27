@@ -7,7 +7,7 @@ namespace LanguagePractice.Repositories.IRepositories
         void Create(T word);
         void Update(T word);
         void Delete(T word);
-        IEnumerable<T> GetAll();
-        T GetSingle(Expression<Func<T, bool>> filter);
+        Task<IEnumerable<T>> GetAll();
+        Task<T> GetSingle(Expression<Func<T, bool>> filter);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using LanguagePractice.DataAccess.DataContext;
 using LanguagePractice.Repositories.IRepositories;
 using LanguagePracticeSite.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LanguagePractice.Repositories
 {
@@ -13,28 +14,43 @@ namespace LanguagePractice.Repositories
             _db = db;
         }
 
-        public Imperfect Imperfect()
+        public async Task<Imperfect> GetImperfect()
         {
-            Imperfect retrievedWord = _db.ImperfectWords.Skip(ProduceRandomOffset("imperfect")).FirstOrDefault();
+            var retrievedImperfectWord = await _db.ImperfectWords.Skip(ProduceRandomOffset("imperfect")).FirstOrDefaultAsync();
 
-            return retrievedWord;
+            if(retrievedImperfectWord == null)
+            {
+                throw new Exception("Word does not exist");
+            }
+
+            return retrievedImperfectWord;
         }
 
-        public PresentIndicative PresentIndicative()
+        public async Task<PresentIndicative> GetPresentIndicative()
         {
-            PresentIndicative retrievedWord = _db.PresentIndicativeWords.Skip(ProduceRandomOffset("present indicative")).FirstOrDefault();
+            var retrievedPresIndWord = await _db.PresentIndicativeWords.Skip(ProduceRandomOffset("present indicative")).FirstOrDefaultAsync();
 
-            return retrievedWord;
+            if(retrievedPresIndWord == null)
+            {
+                throw new Exception("Word does not exist");
+            }
+
+            return retrievedPresIndWord;
         }
 
-        public PresentPerfect PresentPerfect()
+        public async Task<PresentPerfect> GetPresentPerfect()
         {
-            PresentPerfect retrievedWord = _db.PresentPerfectPhrases.Skip(ProduceRandomOffset("present perfect")).FirstOrDefault();
+            var retrievedPresPerfWord = await _db.PresentPerfectPhrases.Skip(ProduceRandomOffset("present perfect")).FirstOrDefaultAsync();
 
-            return retrievedWord;
+            if(retrievedPresPerfWord == null)
+            {
+                throw new Exception("Word does not exist");
+            }
+
+            return retrievedPresPerfWord;
         }
 
-        public int ProduceRandomOffset(string verbTense)
+        private int ProduceRandomOffset(string verbTense)
         {
             int wordCount;
 

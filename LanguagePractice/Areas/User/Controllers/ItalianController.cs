@@ -1,6 +1,4 @@
-﻿using LanguagePractice.DataAccess.DataContext;
-using LanguagePracticeSite.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using LanguagePractice.Repositories.IRepositories;
 
 namespace LanguagePracticeSite.Areas.User.Controllers
@@ -15,28 +13,31 @@ namespace LanguagePracticeSite.Areas.User.Controllers
             _italianRepository = italianRepository;
         }
 
+        [HttpGet]
         [Route("[Controller]/[Action]")]
-        public IActionResult PresentIndicative()
+        public async Task<IActionResult> PresentIndicative()
         {
-            PresentIndicative retrievedWord = _italianRepository.PresentIndicative();
+            var retrievedPresIndWord = await _italianRepository.GetPresentIndicative();
 
-            return View(retrievedWord);
+            return View(retrievedPresIndWord);
         }
 
+        [HttpGet]
         [Route("[Controller]/[Action]")]
-        public IActionResult PresentPerfect()
+        public async Task<IActionResult> PresentPerfect()
         {
-            PresentPerfect retrievedWord = _italianRepository.PresentPerfect();
+            var retrievedPresPerfWord = await _italianRepository.GetPresentPerfect();
 
-            return View(retrievedWord);
+            return View(retrievedPresPerfWord);
         }
 
+        [HttpGet]
         [Route("[Controller]/[Action]")]
-        public IActionResult Imperfect()
+        public async Task<IActionResult> Imperfect()
         {
-            Imperfect retrievedWord = _italianRepository.Imperfect();
+            var retrievedImperfectWord = await _italianRepository.GetImperfect();
 
-            return View(retrievedWord);
+            return View(retrievedImperfectWord);
         }
     }
 }

@@ -26,20 +26,27 @@ namespace LanguagePractice.Repositories
             dbSet.Remove(word);
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
             IQueryable<T> query = dbSet;
 
-            return query.ToList();
+            return await query.ToListAsync();
         }
 
-        public T GetSingle(Expression<Func<T, bool>> filter)
+        public async Task<T> GetSingle(Expression<Func<T, bool>> filter)
         {
             IQueryable<T> query = dbSet;
 
             query = query.Where(filter);
 
-            return query.FirstOrDefault();
+            var retrievedWord = await query.FirstOrDefaultAsync();
+
+            if (retrievedWord == null) 
+            { 
+                throw new NullReferenceException("Word not found.");
+            }
+
+            return retrievedWord;
         }
 
         public void Update(T word)

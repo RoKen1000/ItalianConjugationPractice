@@ -12,6 +12,6 @@ namespace LanguagePractice.Repositories.IRepositories
         IWordManagementRepository<PresentIndicative> PresentIndicative { get; }
         IWordManagementRepository<PresentPerfect> PresentPerfect { get; }
         IWordManagementRepository<Imperfect> Imperfect { get; }
-        void Save();
+        Task Save();
     }
 }
