@@ -1,6 +1,4 @@
-﻿using LanguagePractice.DataAccess.DataContext;
-using LanguagePracticeSite.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using LanguagePractice.Repositories.IRepositories;
 
 namespace LanguagePracticeSite.Areas.User.Controllers
