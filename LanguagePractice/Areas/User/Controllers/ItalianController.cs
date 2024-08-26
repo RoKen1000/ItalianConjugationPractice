@@ -34,7 +34,7 @@ namespace LanguagePracticeSite.Areas.User.Controllers
         {
             var retrievedPresPerfWord = await _italianRepository.GetPresentPerfect();
 
-            var viewModel = _mapper.Map<PresentIndicativeViewModel>(retrievedPresPerfWord);
+            var viewModel = _mapper.Map<PresentPerfectViewModel>(retrievedPresPerfWord);
 
             return View(viewModel);
         }
@@ -47,7 +47,7 @@ namespace LanguagePracticeSite.Areas.User.Controllers
 
             var viewModel = _mapper.Map<ImperfectViewModel>(retrievedImperfectWord);
 
-            return View(retrievedImperfectWord);
+            return View(viewModel);
         }
     }
 }

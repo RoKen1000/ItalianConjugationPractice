@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using LanguagePractice.DataAccess.DataContext;
 using LanguagePractice.Repositories.IRepositories;
 using LanguagePractice.Repositories;
+using LanguagePractice.Models.MappingProfiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<WordDatabaseContext>(
     );
 builder.Services.AddScoped<IItalianRepository, ItalianRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddAutoMapper(typeof(ImperfectProfile).Assembly, typeof(PresentIndicativeProfile).Assembly, typeof(PresentPerfectProfile).Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

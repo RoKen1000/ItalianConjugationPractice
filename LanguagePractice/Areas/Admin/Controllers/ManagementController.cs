@@ -77,7 +77,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
 
             var viewModel = _mapper.Map<PresentIndicativeViewModel>(currentWord);
 
-            return View(currentWord);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -111,7 +111,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
 
             var viewModel = _mapper.Map<PresentIndicativeViewModel>(currentWord);
 
-            return View(currentWord);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -184,7 +184,9 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(currentWord);
+            var viewModel = _mapper.Map<PresentPerfectViewModel>(currentWord);
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -216,7 +218,9 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(currentWord);
+            var viewModel = _mapper.Map<PresentPerfectViewModel>(currentWord);
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -289,7 +293,9 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(currentWord);
+            var viewModel = _mapper.Map<ImperfectViewModel>(currentWord);
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -321,7 +327,9 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(currentWord);
+            var viewModel = _mapper.Map<ImperfectViewModel>(currentWord);
+
+            return View(viewModel);
         }
 
         [HttpPost]
