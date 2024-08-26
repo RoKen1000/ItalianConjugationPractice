@@ -1,6 +1,6 @@
 ﻿using LanguagePractice.DataAccess.DataContext;
 using LanguagePractice.Repositories.IRepositories;
-using LanguagePracticeSite.Models;
+using LanguagePracticeSite.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LanguagePractice.Repositories

@@ -1,4 +1,4 @@
-﻿using LanguagePracticeSite.Models;
+﻿using LanguagePracticeSite.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Imperfect>
+﻿@using LanguagePractice.Models.ViewModels
+@model IEnumerable<ImperfectViewModel>
 @{
     Layout = "_Layout";
 }
@@ -12,7 +13,7 @@
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    @foreach (Imperfect word in Model)
+    @foreach (var word in Model)
     {
         <tr>
             <td id="word-id">@word.Id</td>

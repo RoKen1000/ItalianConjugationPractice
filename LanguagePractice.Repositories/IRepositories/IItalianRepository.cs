@@ -1,4 +1,4 @@
-﻿using LanguagePracticeSite.Models;
+﻿using LanguagePracticeSite.Models.Entities;
 
 namespace LanguagePractice.Repositories.IRepositories
 {

@@ -10,6 +10,8 @@ namespace LanguagePractice.Models.ViewModels
     public abstract class BaseLanguageViewModel
     {
         [Required]
+        public int Id { get; set; }
+        [Required]
         public string Infinitive { get; set; }
         [Required]
         public string FirstPersonSingular { get; set; }

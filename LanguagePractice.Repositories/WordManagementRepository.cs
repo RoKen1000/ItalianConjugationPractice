@@ -1,4 +1,5 @@
-﻿using LanguagePractice.DataAccess.DataContext;
+﻿using AutoMapper;
+using LanguagePractice.DataAccess.DataContext;
 using LanguagePractice.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -8,17 +9,21 @@ namespace LanguagePractice.Repositories
     public class WordManagementRepository<T> : IWordManagementRepository<T> where T : class
     {
         private readonly WordDatabaseContext _db;
+        private readonly IMapper _mapper;
         internal DbSet<T> dbSet;
 
-        public WordManagementRepository(WordDatabaseContext db)
+        public WordManagementRepository(WordDatabaseContext db, IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
             this.dbSet = _db.Set<T>();
         }
 
         public void Create(T word)
         {
-            dbSet.Add(word);
+            var newEntity = _mapper.Map<T>(word);
+
+            dbSet.Add(newEntity);
         }
 
         public void Delete(T word)

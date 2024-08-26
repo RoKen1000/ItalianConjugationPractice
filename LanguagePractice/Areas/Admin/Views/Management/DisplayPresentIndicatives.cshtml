@@ -1,7 +1,8 @@
-﻿@{
+﻿@using LanguagePractice.Models.ViewModels
+@model IEnumerable<PresentIndicativeViewModel>
+@{
     Layout = "_Layout";
 }
-@model IEnumerable<PresentIndicative>
 
 
 <h1 class="display-titles">Current Present Indicative Words in Database</h1>
@@ -13,7 +14,7 @@
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-        @foreach(PresentIndicative word in Model)
+        @foreach(var word in Model)
         {
             <tr>
                 <td id="word-id">@word.Id</td>
