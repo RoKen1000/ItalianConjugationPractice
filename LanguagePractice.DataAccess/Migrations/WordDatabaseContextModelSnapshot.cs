@@ -63,7 +63,7 @@ namespace LanguagePracticeSite.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ImperfectWords");
+                    b.ToTable("ImperfectWords", (string)null);
 
                     b.HasData(
                         new
@@ -230,7 +230,7 @@ namespace LanguagePracticeSite.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PresentIndicativeWords");
+                    b.ToTable("PresentIndicativeWords", (string)null);
 
                     b.HasData(
                         new
@@ -400,7 +400,7 @@ namespace LanguagePracticeSite.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PresentPerfectPhrases");
+                    b.ToTable("PresentPerfectPhrases", (string)null);
 
                     b.HasData(
                         new
