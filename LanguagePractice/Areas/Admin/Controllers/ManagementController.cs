@@ -1,5 +1,8 @@
-﻿using LanguagePractice.Repositories.IRepositories;
+﻿using AutoMapper;
+using LanguagePractice.Models.ViewModels;
+using LanguagePractice.Repositories.IRepositories;
 using LanguagePracticeSite.Models;
+using LanguagePracticeSite.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LanguagePracticeSite.Areas.Admin.Controllers
@@ -8,10 +11,12 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
     public class ManagementController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public ManagementController(IUnitOfWork unitOfWork)
+        public ManagementController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         [Route("[controller]/[action]")]
@@ -20,14 +25,21 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
             return View();
         }
 
+        //PresentIndicative methods
+        #region
+
+        [HttpGet]
         [Route("[controller]/[action]")]
         public async Task<IActionResult> DisplayPresentIndicatives()
         {
-            IEnumerable<PresentIndicative> presIndWords = await _unitOfWork.PresentIndicative.GetAll();
+            var presIndWords = await _unitOfWork.PresentIndicative.GetAll();
 
-            return View(presIndWords);
+            var viewModels = _mapper.Map<IEnumerable<PresentIndicativeViewModel>>(presIndWords);
+
+            return View(viewModels);
         }
 
+        [HttpGet]
         [Route("[controller]/[action]")]
         public IActionResult CreatePresentIndicative()
         {
@@ -37,55 +49,69 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("[controller]/[action]")]
-        public async Task<IActionResult> CreatePresentIndicative(PresentIndicative newPresentIndicative)
+        public async Task<IActionResult> CreatePresentIndicative(PresentIndicativeViewModel newPresentIndicative)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.PresentIndicative.Create(newPresentIndicative);
+                var entity = _mapper.Map<PresentIndicative>(newPresentIndicative);
+
+                _unitOfWork.PresentIndicative.Create(entity);
+
                 await _unitOfWork.Save();
+
                 return RedirectToAction("DisplayPresentIndicatives");
             }
             return View(newPresentIndicative);
         }
 
+        [HttpGet]
         [Route("[controller]/[action]/{id}", Name = "PresIndEdit")]
         public async Task<IActionResult> EditPresentIndicative(int? id)
         {
-            if (id == null || id == 0)
+            var currentWord = await _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
+
+            if(currentWord == null)
             {
                 return NotFound();
             }
 
-            PresentIndicative currentWord = await _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
+            var viewModel = _mapper.Map<PresentIndicativeViewModel>(currentWord);
 
-            return View(currentWord);
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("[controller]/[action]/{id}", Name = "PresIndEdit")]
-        public async Task<IActionResult> EditPresentIndicative(PresentIndicative editedPresInd)
+        public async Task<IActionResult> EditPresentIndicative(PresentIndicativeViewModel editedPresInd)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.PresentIndicative.Update(editedPresInd);
+                var entity = _mapper.Map<PresentIndicative>(editedPresInd);
+
+                _unitOfWork.PresentIndicative.Update(entity);
+
                 await _unitOfWork.Save();
+
                 return RedirectToAction("DisplayPresentIndicatives");
             }
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         [Route("[controller]/[action]/{id}", Name = "PresIndDelete")]
         public async Task<IActionResult> DeletePresentIndicative(int? id)
         {
-            if (id == null || id == 0)
+            var currentWord = await _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
+
+            if(currentWord == null)
             {
                 return NotFound();
             }
 
-            PresentIndicative currentWord = await _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
+            var viewModel = _mapper.Map<PresentIndicativeViewModel>(currentWord);
 
-            return View(currentWord);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -93,7 +119,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [Route("[controller]/DeletePresentIndicative/{id}", Name = "PresIndDelete")]
         public async Task<IActionResult> DeletePresentIndicativeAction(int? id)
         {
-            PresentIndicative wordToDelete = await _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
+            var wordToDelete = await _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
 
             if (wordToDelete == null)
             {
@@ -106,16 +132,23 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
             return RedirectToAction("DisplayPresentIndicatives");
         }
 
-        ////////////////////////////////
+        #endregion ewea eaweawe
 
+        //PresentPerfect methods
+        #region
+
+        [HttpGet]
         [Route("[controller]/[action]")]
         public async Task<IActionResult> DisplayPresentPerfects()
         {
-            IEnumerable<PresentPerfect> presPerfWords = await _unitOfWork.PresentPerfect.GetAll();
+            var presPerfWords = await _unitOfWork.PresentPerfect.GetAll();
 
-            return View(presPerfWords);
+            var viewModels = _mapper.Map<IEnumerable<PresentPerfectViewModel>>(presPerfWords);
+
+            return View(viewModels);
         }
 
+        [HttpGet]
         [Route("[controller]/[action]")]
         public IActionResult CreatePresentPerfect()
         {
@@ -125,55 +158,69 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("[controller]/[action]")]
-        public async Task<IActionResult> CreatePresentPerfect(PresentPerfect newPresentPerfect)
+        public async Task<IActionResult> CreatePresentPerfect(PresentPerfectViewModel newPresentPerfect)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.PresentPerfect.Create(newPresentPerfect);
+                var entity = _mapper.Map<PresentPerfect>(newPresentPerfect);
+
+                _unitOfWork.PresentPerfect.Create(entity);
+
                 await _unitOfWork.Save();
+
                 return RedirectToAction("DisplayPresentPerfects");
             }
             return View(newPresentPerfect);
         }
 
+        [HttpGet]
         [Route("[controller]/[action]/{id}", Name = "PresPerfEdit")]
         public async Task<IActionResult> EditPresentPerfect(int? id)
         {
-            if (id == null || id == 0)
+            var currentWord = await _unitOfWork.PresentPerfect.GetSingle(w => w.Id == id);
+
+            if(currentWord == null)
             {
                 return NotFound();
             }
 
-            PresentPerfect currentWord = await _unitOfWork.PresentPerfect.GetSingle(w => w.Id == id);
+            var viewModel = _mapper.Map<PresentPerfectViewModel>(currentWord);
 
-            return View(currentWord);
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("[controller]/[action]/{id}", Name = "PresPerfEdit")]
-        public async Task<IActionResult> EditPresentPerfect(PresentPerfect editedPresPerf)
+        public async Task<IActionResult> EditPresentPerfect(PresentPerfectViewModel editedPresPerf)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.PresentPerfect.Update(editedPresPerf);
+                var entity = _mapper.Map<PresentPerfect>(editedPresPerf);
+
+                _unitOfWork.PresentPerfect.Update(entity);
+
                 await _unitOfWork.Save();
+
                 return RedirectToAction("DisplayPresentPerfects");
             }
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         [Route("[controller]/[action]/{id}", Name = "PresPerfDelete")]
         public async Task<IActionResult> DeletePresentPerfect(int? id)
         {
-            if (id == null || id == 0)
+            var currentWord = await _unitOfWork.PresentPerfect.GetSingle(w => w.Id == id);
+
+            if(currentWord == null)
             {
                 return NotFound();
             }
 
-            PresentPerfect currentWord = await _unitOfWork.PresentPerfect.GetSingle(w => w.Id == id);
+            var viewModel = _mapper.Map<PresentPerfectViewModel>(currentWord);
 
-            return View(currentWord);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -181,7 +228,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [Route("[controller]/DeletePresentPerfect/{id}", Name = "PresPerfDelete")]
         public async Task<IActionResult> DeletePresentPerfectAction(int? id)
         {
-            PresentPerfect wordToDelete = await _unitOfWork.PresentPerfect.GetSingle(w => w.Id == id);
+            var wordToDelete = await _unitOfWork.PresentPerfect.GetSingle(w => w.Id == id);
 
             if (wordToDelete == null)
             {
@@ -194,16 +241,23 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
             return RedirectToAction("DisplayPresentPerfects");
         }
 
-        ////////////////////
+        #endregion
 
+        //Imperfect methods
+        #region
+
+        [HttpGet]
         [Route("[controller]/[action]")]
         public async Task<IActionResult> DisplayImperfects()
         {
-            IEnumerable<Imperfect> imperfectWords = await _unitOfWork.Imperfect.GetAll();
+            var imperfectWords = await _unitOfWork.Imperfect.GetAll();
 
-            return View(imperfectWords);
+            var viewModels = _mapper.Map<IEnumerable<ImperfectViewModel>>(imperfectWords);
+
+            return View(viewModels);
         }
 
+        [HttpGet]
         [Route("[controller]/[action]")]
         public IActionResult CreateImperfect()
         {
@@ -213,55 +267,69 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("[controller]/[action]")]
-        public async Task<IActionResult> CreateImperfect(Imperfect newImperfect)
+        public async Task<IActionResult> CreateImperfect(ImperfectViewModel newImperfect)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Imperfect.Create(newImperfect);
+                var entity = _mapper.Map<Imperfect>(newImperfect);
+
+                _unitOfWork.Imperfect.Create(entity);
+
                 await _unitOfWork.Save();
+
                 return RedirectToAction("DisplayImperfects");
             }
             return View(newImperfect);
         }
 
+        [HttpGet]
         [Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
         public async Task<IActionResult> EditImperfect(int? id)
         {
-            if (id == null || id == 0)
+            var currentWord = await _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
+
+            if(currentWord == null)
             {
                 return NotFound();
             }
 
-            Imperfect currentWord = await _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
+            var viewModel = _mapper.Map<ImperfectViewModel>(currentWord);
 
-            return View(currentWord);
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("[controller]/[action]/{id}", Name = "ImperfEdit")]
-        public async Task<IActionResult> EditImperfect(Imperfect editedImperf)
+        public async Task<IActionResult> EditImperfect(ImperfectViewModel editedImperf)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Imperfect.Update(editedImperf);
+                var entity = _mapper.Map<Imperfect>(editedImperf);
+
+                _unitOfWork.Imperfect.Update(entity);
+
                 await _unitOfWork.Save();
+
                 return RedirectToAction("DisplayImperfects");
             }
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         [Route("[controller]/[action]/{id}", Name = "ImperfDelete")]
         public async Task<IActionResult> DeleteImperfect(int? id)
         {
-            if (id == null || id == 0)
+            var currentWord = await _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
+
+            if(currentWord == null)
             {
                 return NotFound();
             }
 
-            Imperfect currentWord = await _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
+            var viewModel = _mapper.Map<ImperfectViewModel>(currentWord);
 
-            return View(currentWord);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -269,7 +337,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         [Route("[controller]/DeleteImperfect/{id}", Name = "ImperfDelete")]
         public async Task<IActionResult> DeleteImperfectAction(int? id)
         {
-            Imperfect wordToDelete = await _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
+            var wordToDelete = await _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
 
             if (wordToDelete == null)
             {
@@ -281,5 +349,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
 
             return RedirectToAction("DisplayImperfects");
         }
+
+        #endregion
     }
 }

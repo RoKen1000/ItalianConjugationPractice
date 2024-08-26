@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LanguagePracticeSite.Models
+namespace LanguagePractice.Models.ViewModels
 {
-    public class PresentIndicative
+    public abstract class BaseLanguageViewModel
     {
-        [Key]
         [Required]
         public int Id { get; set; }
         [Required]
@@ -19,7 +23,7 @@ namespace LanguagePracticeSite.Models
         public string FirstPersonPlural { get; set; }
         [Required]
         public string SecondPersonPlural { get; set; }
-        [Required]
+        [Required]  
         public string ThirdPersonPlural { get; set; }
         [Required]
         public string EnglishTranslation { get; set; }

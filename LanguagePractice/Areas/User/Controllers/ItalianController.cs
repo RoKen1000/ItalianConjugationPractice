@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using LanguagePractice.Repositories.IRepositories;
+using AutoMapper;
+using LanguagePractice.Models.ViewModels;
 
 namespace LanguagePracticeSite.Areas.User.Controllers
 {
@@ -7,10 +9,12 @@ namespace LanguagePracticeSite.Areas.User.Controllers
     public class ItalianController : Controller
     {
         private readonly IItalianRepository _italianRepository;
+        private readonly IMapper _mapper;
 
-        public ItalianController(IItalianRepository italianRepository)
+        public ItalianController(IItalianRepository italianRepository, IMapper mapper)
         {
             _italianRepository = italianRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -19,7 +23,9 @@ namespace LanguagePracticeSite.Areas.User.Controllers
         {
             var retrievedPresIndWord = await _italianRepository.GetPresentIndicative();
 
-            return View(retrievedPresIndWord);
+            var viewModel = _mapper.Map<PresentIndicativeViewModel>(retrievedPresIndWord);
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -28,7 +34,9 @@ namespace LanguagePracticeSite.Areas.User.Controllers
         {
             var retrievedPresPerfWord = await _italianRepository.GetPresentPerfect();
 
-            return View(retrievedPresPerfWord);
+            var viewModel = _mapper.Map<PresentPerfectViewModel>(retrievedPresPerfWord);
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -37,7 +45,9 @@ namespace LanguagePracticeSite.Areas.User.Controllers
         {
             var retrievedImperfectWord = await _italianRepository.GetImperfect();
 
-            return View(retrievedImperfectWord);
+            var viewModel = _mapper.Map<ImperfectViewModel>(retrievedImperfectWord);
+
+            return View(viewModel);
         }
     }
 }
