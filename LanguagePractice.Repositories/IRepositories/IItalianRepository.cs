@@ -5,8 +5,8 @@ namespace LanguagePractice.Repositories.IRepositories
 {
     public interface IItalianRepository
     {
-        Task<PresentIndicative> GetPresentIndicative();
-        Task<PresentPerfect> GetPresentPerfect();
+        Task<Result<PresentIndicative>> GetPresentIndicative();
+        Task<Result<PresentPerfect>> GetPresentPerfect();
         Task<Result<Imperfect>> GetImperfect();
     }
 }

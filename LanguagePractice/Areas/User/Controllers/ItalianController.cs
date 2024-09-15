@@ -22,9 +22,20 @@ namespace LanguagePracticeSite.Areas.User.Controllers
         [Route("[Controller]/[Action]")]
         public async Task<IActionResult> PresentIndicative()
         {
-            var retrievedPresIndWord = await _italianRepository.GetPresentIndicative();
+            var result = await _italianRepository.GetPresentIndicative();
 
-            var viewModel = _mapper.Map<PresentIndicativeViewModel>(retrievedPresIndWord);
+            var viewModel = new PresentIndicativeViewModel();
+
+            if (result.IsSuccess)
+            {
+                viewModel = _mapper.Map<PresentIndicativeViewModel>(result.Data);
+                viewModel.IsSuccess = true;
+            }
+            else
+            {
+                viewModel.ErrorMessage = result.ErrorMessage;
+                viewModel.IsSuccess = false;
+            }
 
             return View(viewModel);
         }
@@ -33,9 +44,20 @@ namespace LanguagePracticeSite.Areas.User.Controllers
         [Route("[Controller]/[Action]")]
         public async Task<IActionResult> PresentPerfect()
         {
-            var retrievedPresPerfWord = await _italianRepository.GetPresentPerfect();
+            var result = await _italianRepository.GetPresentPerfect();
 
-            var viewModel = _mapper.Map<PresentPerfectViewModel>(retrievedPresPerfWord);
+            var viewModel = new PresentPerfectViewModel();
+
+            if (result.IsSuccess)
+            {
+                viewModel = _mapper.Map<PresentPerfectViewModel>(result.Data);
+                viewModel.IsSuccess = true;
+            }
+            else
+            {
+                viewModel.ErrorMessage = result.ErrorMessage;
+                viewModel.IsSuccess = false;
+            }
 
             return View(viewModel);
         }
@@ -55,8 +77,8 @@ namespace LanguagePracticeSite.Areas.User.Controllers
             }
             else
             {
-                viewModel.IsSuccess = false;
                 viewModel.ErrorMessage = result.ErrorMessage;
+                viewModel.IsSuccess = false;
             }
 
             return View(viewModel);

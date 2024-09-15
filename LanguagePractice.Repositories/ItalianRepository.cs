@@ -27,28 +27,28 @@ namespace LanguagePractice.Repositories
             return Result<Imperfect>.Success(retrievedImperfectWord);
         }
 
-        public async Task<PresentIndicative> GetPresentIndicative()
+        public async Task<Result<PresentIndicative>> GetPresentIndicative()
         {
             var retrievedPresIndWord = await _db.PresentIndicativeWords.Skip(ProduceRandomOffset("present indicative")).FirstOrDefaultAsync();
 
             if(retrievedPresIndWord == null)
             {
-                throw new Exception("Word does not exist");
+                return Result<PresentIndicative>.Failure("Word does not exist");
             }
 
-            return retrievedPresIndWord;
+            return Result<PresentIndicative>.Success(retrievedPresIndWord); ;
         }
 
-        public async Task<PresentPerfect> GetPresentPerfect()
+        public async Task<Result<PresentPerfect>> GetPresentPerfect()
         {
             var retrievedPresPerfWord = await _db.PresentPerfectPhrases.Skip(ProduceRandomOffset("present perfect")).FirstOrDefaultAsync();
 
             if(retrievedPresPerfWord == null)
             {
-                throw new Exception("Word does not exist");
+                return Result<PresentPerfect>.Failure("Word does not exist");
             }
 
-            return retrievedPresPerfWord;
+            return Result<PresentPerfect>.Success(retrievedPresPerfWord);
         }
 
         private int ProduceRandomOffset(string verbTense)
