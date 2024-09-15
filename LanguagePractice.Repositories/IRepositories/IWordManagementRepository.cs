@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using LanguagePractice.Common.Result;
+using System.Linq.Expressions;
 
 namespace LanguagePractice.Repositories.IRepositories
 {
@@ -7,7 +8,7 @@ namespace LanguagePractice.Repositories.IRepositories
         void Create(T word);
         void Update(T word);
         void Delete(T word);
-        Task<IEnumerable<T>> GetAll();
-        Task<T> GetSingle(Expression<Func<T, bool>> filter);
+        Task<Result<T>> GetAll();
+        Task<Result<T>> GetSingle(Expression<Func<T, bool>> filter);
     }
 }

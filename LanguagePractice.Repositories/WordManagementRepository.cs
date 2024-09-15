@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LanguagePractice.Common.Result;
 using LanguagePractice.DataAccess.DataContext;
 using LanguagePractice.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
@@ -31,14 +32,23 @@ namespace LanguagePractice.Repositories
             dbSet.Remove(word);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<Result<T>> GetAll()
         {
             IQueryable<T> query = dbSet;
 
-            return await query.ToListAsync();
+            var entites = await query.ToListAsync();
+
+            if (entites.Any())
+            {
+                return Result<T>.Success(entites);
+            }
+            else
+            {
+                return Result<T>.Failure("No words found for this tense");
+            }
         }
 
-        public async Task<T> GetSingle(Expression<Func<T, bool>> filter)
+        public async Task<Result<T>> GetSingle(Expression<Func<T, bool>> filter)
         {
             IQueryable<T> query = dbSet;
 
@@ -47,11 +57,11 @@ namespace LanguagePractice.Repositories
             var retrievedWord = await query.FirstOrDefaultAsync();
 
             if (retrievedWord == null) 
-            { 
-                throw new NullReferenceException("Word not found.");
+            {
+                return Result<T>.Failure("Word not found.");
             }
 
-            return retrievedWord;
+            return Result<T>.Success(retrievedWord);
         }
 
         public void Update(T word)

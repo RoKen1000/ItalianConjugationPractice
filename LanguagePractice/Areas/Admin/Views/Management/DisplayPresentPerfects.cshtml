@@ -1,5 +1,5 @@
 ﻿@using LanguagePractice.Models.ViewModels
-@model IEnumerable<PresentPerfectViewModel>
+@model ManagementIndexViewModel<PresentPerfectViewModel>
 @{
     Layout = "_Layout";
 }
@@ -14,7 +14,7 @@
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    @foreach (var word in Model)
+    @foreach (var word in Model.Entities)
     {
         <tr>
             <td id="word-id">@word.Id</td>

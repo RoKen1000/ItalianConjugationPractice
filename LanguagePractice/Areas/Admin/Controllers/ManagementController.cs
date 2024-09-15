@@ -34,9 +34,19 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             var presIndWords = await _unitOfWork.PresentIndicative.GetAll();
 
-            var viewModels = _mapper.Map<IEnumerable<PresentIndicativeViewModel>>(presIndWords);
+            var viewModel = new ManagementIndexViewModel<PresentIndicativeViewModel>();
 
-            return View(viewModels);
+            if (presIndWords.IsSuccess)
+            {
+                viewModel.Entities = _mapper.Map<List<PresentIndicativeViewModel>>(presIndWords.DataList);
+                viewModel.IsSuccess = true;
+            }
+            else
+            {
+                viewModel.IsSuccess = false;
+            }
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -104,12 +114,12 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             var currentWord = await _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
 
-            if(currentWord == null)
+            if(!currentWord.IsSuccess)
             {
                 return NotFound();
             }
 
-            var viewModel = _mapper.Map<PresentIndicativeViewModel>(currentWord);
+            var viewModel = _mapper.Map<PresentIndicativeViewModel>(currentWord.Data);
 
             return View(viewModel);
         }
@@ -121,12 +131,12 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             var wordToDelete = await _unitOfWork.PresentIndicative.GetSingle(w => w.Id == id);
 
-            if (wordToDelete == null)
+            if (!wordToDelete.IsSuccess)
             {
                 return NotFound();
             }
 
-            _unitOfWork.PresentIndicative.Delete(wordToDelete);
+            _unitOfWork.PresentIndicative.Delete(wordToDelete.Data);
             await _unitOfWork.Save();
 
             return RedirectToAction("DisplayPresentIndicatives");
@@ -143,9 +153,19 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             var presPerfWords = await _unitOfWork.PresentPerfect.GetAll();
 
-            var viewModels = _mapper.Map<IEnumerable<PresentPerfectViewModel>>(presPerfWords);
+            var viewModel = new ManagementIndexViewModel<PresentPerfectViewModel>();
 
-            return View(viewModels);
+            if (presPerfWords.IsSuccess)
+            {
+                viewModel.Entities = _mapper.Map<List<PresentPerfectViewModel>>(presPerfWords.DataList);
+                viewModel.IsSuccess = true;
+            }
+            else
+            {
+                viewModel.IsSuccess = false;
+            }
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -230,12 +250,12 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             var wordToDelete = await _unitOfWork.PresentPerfect.GetSingle(w => w.Id == id);
 
-            if (wordToDelete == null)
+            if (!wordToDelete.IsSuccess)
             {
                 return NotFound();
             }
 
-            _unitOfWork.PresentPerfect.Delete(wordToDelete);
+            _unitOfWork.PresentPerfect.Delete(wordToDelete.Data);
             await _unitOfWork.Save();
 
             return RedirectToAction("DisplayPresentPerfects");
@@ -252,9 +272,19 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             var imperfectWords = await _unitOfWork.Imperfect.GetAll();
 
-            var viewModels = _mapper.Map<IEnumerable<ImperfectViewModel>>(imperfectWords);
+            var viewModel = new ManagementIndexViewModel<ImperfectViewModel>();
 
-            return View(viewModels);
+            if (imperfectWords.IsSuccess)
+            {
+                viewModel.Entities = _mapper.Map<List<ImperfectViewModel>>(imperfectWords.DataList);
+                viewModel.IsSuccess = true;
+            }
+            else
+            {
+                viewModel.IsSuccess = false;
+            }
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -288,12 +318,12 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             var currentWord = await _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
 
-            if(currentWord == null)
+            if(!currentWord.IsSuccess)
             {
                 return NotFound();
             }
 
-            var viewModel = _mapper.Map<ImperfectViewModel>(currentWord);
+            var viewModel = _mapper.Map<ImperfectViewModel>(currentWord.Data);
 
             return View(viewModel);
         }
@@ -339,12 +369,12 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
         {
             var wordToDelete = await _unitOfWork.Imperfect.GetSingle(w => w.Id == id);
 
-            if (wordToDelete == null)
+            if (!wordToDelete.IsSuccess)
             {
                 return NotFound();
             }
 
-            _unitOfWork.Imperfect.Delete(wordToDelete);
+            _unitOfWork.Imperfect.Delete(wordToDelete.Data);
             await _unitOfWork.Save();
 
             return RedirectToAction("DisplayImperfects");
