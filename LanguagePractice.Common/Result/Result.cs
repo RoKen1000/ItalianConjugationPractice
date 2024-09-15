@@ -1,10 +1,11 @@
 ﻿namespace LanguagePractice.Common.Result
 {
-    public class Result
+    public class Result<T>
     {
-        public Result()
+        public Result(T data)
         {
             IsSuccess = true;
+            Data = data;
         }
 
         public Result(string error)
@@ -13,17 +14,18 @@
             ErrorMessage = error;
         }
 
-        private bool IsSuccess { get; set; }
-        private string? ErrorMessage { get; set; }
+        public bool IsSuccess { get; set; }
+        public string? ErrorMessage { get; set; }
+        public T? Data { get; set; }
 
-        public static Result Success()
+        public static Result<T> Success(T data)
         {
-            return new Result();
+            return new Result<T>(data);
         }
 
-        public static Result Failure(string errorMessage)
+        public static Result<T> Failure(string errorMessage)
         {
-            return new Result(errorMessage);
+            return new Result<T>(errorMessage);
         }
     }
 }

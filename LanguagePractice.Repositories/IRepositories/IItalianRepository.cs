@@ -1,4 +1,5 @@
-﻿using LanguagePracticeSite.Models.Entities;
+﻿using LanguagePractice.Common.Result;
+using LanguagePracticeSite.Models.Entities;
 
 namespace LanguagePractice.Repositories.IRepositories
 {
@@ -6,6 +7,6 @@ namespace LanguagePractice.Repositories.IRepositories
     {
         Task<PresentIndicative> GetPresentIndicative();
         Task<PresentPerfect> GetPresentPerfect();
-        Task<Imperfect> GetImperfect();
+        Task<Result<Imperfect>> GetImperfect();
     }
 }

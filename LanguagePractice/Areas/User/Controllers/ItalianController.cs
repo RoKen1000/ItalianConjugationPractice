@@ -2,6 +2,7 @@
 using LanguagePractice.Repositories.IRepositories;
 using AutoMapper;
 using LanguagePractice.Models.ViewModels;
+using LanguagePractice.Common.Result;
 
 namespace LanguagePracticeSite.Areas.User.Controllers
 {
@@ -43,9 +44,20 @@ namespace LanguagePracticeSite.Areas.User.Controllers
         [Route("[Controller]/[Action]")]
         public async Task<IActionResult> Imperfect()
         {
-            var retrievedImperfectWord = await _italianRepository.GetImperfect();
+            var result = await _italianRepository.GetImperfect();
 
-            var viewModel = _mapper.Map<ImperfectViewModel>(retrievedImperfectWord);
+            var viewModel = new ImperfectViewModel();
+
+            if (result.IsSuccess)
+            {
+                viewModel = _mapper.Map<ImperfectViewModel>(result.Data);
+                viewModel.IsSuccess = true;
+            }
+            else
+            {
+                viewModel.IsSuccess = false;
+                viewModel.ErrorMessage = result.ErrorMessage;
+            }
 
             return View(viewModel);
         }

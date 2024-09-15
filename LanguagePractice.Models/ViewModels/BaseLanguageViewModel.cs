@@ -27,5 +27,8 @@ namespace LanguagePractice.Models.ViewModels
         public string ThirdPersonPlural { get; set; }
         [Required]
         public string EnglishTranslation { get; set; }
+
+        public bool IsSuccess { get; set; }
+        public string? ErrorMessage { get; set; }
     }
 }

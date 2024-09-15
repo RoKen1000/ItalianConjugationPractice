@@ -1,6 +1,7 @@
 ﻿using LanguagePractice.DataAccess.DataContext;
 using LanguagePractice.Repositories.IRepositories;
 using LanguagePracticeSite.Models.Entities;
+using LanguagePractice.Common.Result;
 using Microsoft.EntityFrameworkCore;
 
 namespace LanguagePractice.Repositories
@@ -14,16 +15,16 @@ namespace LanguagePractice.Repositories
             _db = db;
         }
 
-        public async Task<Imperfect> GetImperfect()
+        public async Task<Result<Imperfect>> GetImperfect()
         {
             var retrievedImperfectWord = await _db.ImperfectWords.Skip(ProduceRandomOffset("imperfect")).FirstOrDefaultAsync();
 
             if(retrievedImperfectWord == null)
             {
-                throw new Exception("Word does not exist");
+                return Result<Imperfect>.Failure("Word does not exist");
             }
 
-            return retrievedImperfectWord;
+            return Result<Imperfect>.Success(retrievedImperfectWord);
         }
 
         public async Task<PresentIndicative> GetPresentIndicative()
