@@ -1,4 +1,5 @@
-﻿using LanguagePractice.DataAccess.DataContext;
+﻿using LanguagePractice.Common.Enums;
+using LanguagePractice.DataAccess.DataContext;
 using LanguagePractice.Repositories.IRepositories;
 using LanguagePracticeSite.Models.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,7 @@ namespace LanguagePractice.Repositories
 
         public async Task<Imperfect> GetImperfect()
         {
-            var retrievedImperfectWord = await _db.ImperfectWords.Skip(ProduceRandomOffset("imperfect")).FirstOrDefaultAsync();
+            var retrievedImperfectWord = await _db.ImperfectWords.Skip(ProduceRandomOffset(VerbTense.Imperfect)).FirstOrDefaultAsync();
 
             if(retrievedImperfectWord == null)
             {
@@ -28,7 +29,7 @@ namespace LanguagePractice.Repositories
 
         public async Task<PresentIndicative> GetPresentIndicative()
         {
-            var retrievedPresIndWord = await _db.PresentIndicativeWords.Skip(ProduceRandomOffset("present indicative")).FirstOrDefaultAsync();
+            var retrievedPresIndWord = await _db.PresentIndicativeWords.Skip(ProduceRandomOffset(VerbTense.PresentIndicative)).FirstOrDefaultAsync();
 
             if(retrievedPresIndWord == null)
             {
@@ -40,7 +41,7 @@ namespace LanguagePractice.Repositories
 
         public async Task<PresentPerfect> GetPresentPerfect()
         {
-            var retrievedPresPerfWord = await _db.PresentPerfectPhrases.Skip(ProduceRandomOffset("present perfect")).FirstOrDefaultAsync();
+            var retrievedPresPerfWord = await _db.PresentPerfectPhrases.Skip(ProduceRandomOffset(VerbTense.PresentPerfect)).FirstOrDefaultAsync();
 
             if(retrievedPresPerfWord == null)
             {
@@ -50,19 +51,19 @@ namespace LanguagePractice.Repositories
             return retrievedPresPerfWord;
         }
 
-        private int ProduceRandomOffset(string verbTense)
+        private int ProduceRandomOffset(VerbTense verbTense)
         {
             int wordCount;
 
-            switch (verbTense)
+            switch ((int)verbTense)
             {
-                case "present indicative":
+                case 0:
                     wordCount = _db.PresentIndicativeWords.Count();
                     break;
-                case "present perfect":
+                case 1:
                     wordCount = _db.PresentPerfectPhrases.Count();
                     break;
-                case "imperfect":
+                case 2:
                     wordCount = _db.ImperfectWords.Count();
                     break;
                 default:
