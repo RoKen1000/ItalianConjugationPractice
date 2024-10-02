@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguagePractice.DataAccess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguagePractice.Models", "LanguagePractice.Models\LanguagePractice.Models.csproj", "{3C9FA64E-CB04-494E-ABFA-78037A11DF8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguagePractice.Repositories", "LanguagePractice.Repositories\LanguagePractice.Repositories.csproj", "{FED3385A-A733-48F5-85E6-E1F977812EA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguagePractice.Repositories", "LanguagePractice.Repositories\LanguagePractice.Repositories.csproj", "{FED3385A-A733-48F5-85E6-E1F977812EA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguagePractice.Common", "LanguagePractice.Common\LanguagePractice.Common.csproj", "{FEB83B8B-0D13-4327-9804-ED7F7B9CD09F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FED3385A-A733-48F5-85E6-E1F977812EA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FED3385A-A733-48F5-85E6-E1F977812EA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FED3385A-A733-48F5-85E6-E1F977812EA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEB83B8B-0D13-4327-9804-ED7F7B9CD09F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEB83B8B-0D13-4327-9804-ED7F7B9CD09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEB83B8B-0D13-4327-9804-ED7F7B9CD09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEB83B8B-0D13-4327-9804-ED7F7B9CD09F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

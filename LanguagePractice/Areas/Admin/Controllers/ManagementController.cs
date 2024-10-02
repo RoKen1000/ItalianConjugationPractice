@@ -132,7 +132,7 @@ namespace LanguagePracticeSite.Areas.Admin.Controllers
             return RedirectToAction("DisplayPresentIndicatives");
         }
 
-        #endregion ewea eaweawe
+        #endregion
 
         //PresentPerfect methods
         #region
